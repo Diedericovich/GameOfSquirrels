@@ -63,7 +63,7 @@ namespace _GameOfSquirrels
 
             for (int i = 0; i < MaxBoardHeight; i++)
             {
-                BoardGrid.RowDefinitions.Add(new RowDefinition());
+                BoardGrid.RowDefinitions.Add(new RowDefinition() { MaxHeight = 15, MinHeight = 15 });
             }
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -7,7 +8,7 @@ using System.Windows.Shapes;
 
 namespace _GameOfSquirrels
 {
-    class Pawn : IPawn
+    public class Pawn : IPawn
     {
         private int _locationX;
 
@@ -38,13 +39,18 @@ namespace _GameOfSquirrels
             LocationX = locationX;
             LocationY = locationY;
             Ellipse = new Ellipse() { Fill = Brushes.BlueViolet };
-
         }
 
         public void Move()
         {
             Dice dice = new Dice();
-            LocationX += dice.RollDice(1,7);
+            LocationX += dice.RollDice(1, 7);
+            Grid.SetColumn(Ellipse, LocationX);
+        }
+
+        public void Move(int x)
+        {
+            LocationX += x;
             Grid.SetColumn(Ellipse, LocationX);
         }
     }

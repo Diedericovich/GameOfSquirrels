@@ -5,9 +5,35 @@
         xmlns:local="clr-namespace:_GameOfSquirrels"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         Title="MainWindow"
-        Width="800"
-        Height="450"
+        Width="1800"
+        Height="900"
         mc:Ignorable="d">
-    <Grid x:Name="GridOuter"
- />
+    <Grid x:Name="GridOuter">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="15*" />
+            <ColumnDefinition Width="200*" />
+            <ColumnDefinition Width="15*" />
+            <ColumnDefinition Width="100*" />
+            <ColumnDefinition Width="15*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15*" />
+            <RowDefinition Height="100*" />
+            <RowDefinition Height="15*" />
+            <RowDefinition Height="100*" />
+            <RowDefinition Height="15*" />
+        </Grid.RowDefinitions>
+        <ScrollViewer Grid.Row="1"
+                      Grid.RowSpan="3"
+                      Grid.Column="1"
+                      HorizontalScrollBarVisibility="Auto">
+            <Grid x:Name="GridGame"
+                  Grid.Row="1"
+                  Grid.RowSpan="3"
+                  Grid.Column="1" />
+        </ScrollViewer>
+        <Button Grid.Row="3"
+                Grid.Column="3"
+                Click="TestButtonClick" />
+    </Grid>
 </Window>

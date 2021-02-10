@@ -24,29 +24,28 @@ namespace _GameOfSquirrels
         private Board board;
         public List<IPawn> Playerlist;
 
-
         public MainWindow()
         {
             InitializeComponent();
-            board = new Board(GridOuter, 0, 30);
-            GridOuter.ShowGridLines = true;
-            Pawn pawn = new Pawn(1,1);
-            GridOuter.Children.Add(pawn.Ellipse);
+            board = new Board(GridGame, 0, 10);
+            GridGame.ShowGridLines = true;
+            GridGame.Height = 30;
+
+            Pawn pawn = new Pawn(1, 1);
+            GridGame.Children.Add(pawn.Ellipse);
             Grid.SetColumn(pawn.Ellipse, pawn.LocationX);
             Grid.SetRow(pawn.Ellipse, pawn.LocationY);
-            pawn.Move();
-            pawn.Move();
-            pawn.Move();
-            pawn.Move();
-            pawn.Move();
-            pawn.Move();
-            pawn.Move();
-            pawn.Move();
+
+            Playerlist = new List<IPawn> { pawn };
+
+            CatapultTile testtile = new CatapultTile(5, 5);
+            GridGame.Children.Add(testtile.TileBorder);
+            Grid.SetColumn(testtile.TileBorder, testtile.LocationX);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void TestButtonClick(object sender, RoutedEventArgs e)
         {
-            //Test1.Content = dice.RollDice(1, 7);
+            Playerlist[0].Move();
         }
     }
 }

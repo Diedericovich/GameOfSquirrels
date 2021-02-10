@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Controls;
 
 namespace _GameOfSquirrels
 {
-    abstract class Tile : ITile
+    internal abstract class Tile : ITile
     {
         private int _locationX;
 
@@ -22,6 +23,8 @@ namespace _GameOfSquirrels
             set { _locationY = value; }
         }
 
+        public Border TileBorder;
+
         public Tile(int locationX, int locationY)
         {
             LocationX = locationX;
@@ -30,7 +33,6 @@ namespace _GameOfSquirrels
 
         public virtual void InteractWith(Pawn pawn)
         {
-
         }
     }
 }
