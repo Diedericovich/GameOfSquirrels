@@ -5,7 +5,7 @@ using System.Windows.Controls;
 
 namespace _GameOfSquirrels
 {
-    internal abstract class Tile : ITile
+    public abstract class Tile : ITile
     {
         private int _locationX;
 
@@ -31,7 +31,7 @@ namespace _GameOfSquirrels
             LocationY = locationY;
         }
 
-        public virtual void InteractWith(Pawn pawn)
+        public virtual void InteractWith(IPawn pawn)
         {
         }
     }

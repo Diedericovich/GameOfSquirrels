@@ -6,7 +6,7 @@ using System.Windows.Media;
 
 namespace _GameOfSquirrels
 {
-    internal class CatapultTile : Tile
+    public class CatapultTile : Tile
     {
         public CatapultTile(int locationX, int locationY)
             : base(locationX, locationY)
@@ -15,7 +15,7 @@ namespace _GameOfSquirrels
             TileBorder.Background = Brushes.SaddleBrown;
         }
 
-        public override void InteractWith(Pawn pawn)
+        public override void InteractWith(IPawn pawn)
         {
             pawn.Move(-1);
         }

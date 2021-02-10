@@ -9,5 +9,7 @@ namespace _GameOfSquirrels
         int LocationY { get; set; }
 
         void Move();
+
+        void Move(int x);
     }
 }

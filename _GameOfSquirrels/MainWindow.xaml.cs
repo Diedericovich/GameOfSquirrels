@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace _GameOfSquirrels
 {
@@ -23,11 +13,12 @@ namespace _GameOfSquirrels
         private Dice dice = new Dice();
         private Board board;
         public List<IPawn> Playerlist;
+        public List<ITile> BoardTiles;
 
         public MainWindow()
         {
             InitializeComponent();
-            board = new Board(GridGame, 0, 10);
+            board = new Board(GridGame, 0, 20);
             GridGame.ShowGridLines = true;
             GridGame.Height = 30;
 
@@ -36,25 +27,30 @@ namespace _GameOfSquirrels
             Grid.SetColumn(pawn.Ellipse, pawn.LocationX);
             Grid.SetRow(pawn.Ellipse, pawn.LocationY);
 
+            BoardTiles = new List<ITile>();
             Playerlist = new List<IPawn> { pawn };
 
             CatapultTile testtile = new CatapultTile(5, 5);
+            BoardTiles.Add(testtile);
             GridGame.Children.Add(testtile.TileBorder);
             Grid.SetColumn(testtile.TileBorder, testtile.LocationX);
-            do
-            {
-                if (pawn.LocationX == testtile.LocationX)
-                {
-                    testtile.InteractWith(pawn);
-                }
-            } while (pawn.LocationX < 10);
-
-            MessageBox.Show("You win");
         }
 
         private void TestButtonClick(object sender, RoutedEventArgs e)
         {
             Playerlist[0].Move();
+
+            if (Playerlist[0].LocationX == BoardTiles[0].LocationX)
+            {
+                BoardTiles[0].InteractWith(Playerlist[0]);
+                Playerlist[0].Ellipse.Fill = Brushes.Pink;
+            }
+
+            if (Playerlist[0].LocationX == 20)
+            {
+                Playerlist[0].LocationX = 0;
+                Grid.SetColumn(Playerlist[0].Ellipse, Playerlist[0].LocationX);
+            }
         }
     }
 }

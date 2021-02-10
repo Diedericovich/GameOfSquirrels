@@ -1,10 +1,10 @@
 ﻿namespace _GameOfSquirrels
 {
-    interface ITile
+    public interface ITile
     {
         int LocationX { get; set; }
         int LocationY { get; set; }
 
-        void InteractWith(Pawn pawn);
+        void InteractWith(IPawn pawn);
     }
 }
