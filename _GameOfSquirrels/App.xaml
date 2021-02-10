@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:_GameOfSquirrels"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        <!--test-->
          
     </Application.Resources>
 </Application>
