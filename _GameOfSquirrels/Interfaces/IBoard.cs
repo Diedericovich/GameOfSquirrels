@@ -1,6 +1,6 @@
 ﻿namespace _GameOfSquirrels
 {
-    internal interface IBoard
+    public interface IBoard
     {
         int MaxBoardHeight { get; set; }
         int MaxBoardWidth { get; set; }

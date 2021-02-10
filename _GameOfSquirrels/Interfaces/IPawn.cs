@@ -1,6 +1,6 @@
 ﻿namespace _GameOfSquirrels
 {
-    interface IPawn
+    public interface IPawn
     {
         int LocationX { get; set; }
         int LocationY { get; set; }

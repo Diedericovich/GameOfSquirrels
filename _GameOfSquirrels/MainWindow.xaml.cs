@@ -22,11 +22,12 @@ namespace _GameOfSquirrels
     {
         private Dice dice = new Dice();
         private Board board;
+        public List<IPawn> Playerlist;
 
         public MainWindow()
         {
             InitializeComponent();
-            board = new Board(GridOuter, 2, 60);
+            board = new Board(GridOuter, 0, 60);
             GridOuter.ShowGridLines = true;
         }
 
