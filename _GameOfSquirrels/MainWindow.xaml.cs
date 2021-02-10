@@ -24,11 +24,24 @@ namespace _GameOfSquirrels
         private Board board;
         public List<IPawn> Playerlist;
 
+
         public MainWindow()
         {
             InitializeComponent();
-            board = new Board(GridOuter, 0, 60);
+            board = new Board(GridOuter, 0, 30);
             GridOuter.ShowGridLines = true;
+            Pawn pawn = new Pawn(1,1);
+            GridOuter.Children.Add(pawn.Ellipse);
+            Grid.SetColumn(pawn.Ellipse, pawn.LocationX);
+            Grid.SetRow(pawn.Ellipse, pawn.LocationY);
+            pawn.Move();
+            pawn.Move();
+            pawn.Move();
+            pawn.Move();
+            pawn.Move();
+            pawn.Move();
+            pawn.Move();
+            pawn.Move();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

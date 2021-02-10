@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace _GameOfSquirrels
 {
@@ -22,6 +25,27 @@ namespace _GameOfSquirrels
             set { _locationY = value; }
         }
 
+        private Ellipse _ellipse;
 
+        public Ellipse Ellipse
+        {
+            get { return _ellipse; }
+            set { _ellipse = value; }
+        }
+
+        public Pawn(int locationX, int locationY)
+        {
+            LocationX = locationX;
+            LocationY = locationY;
+            Ellipse = new Ellipse() { Fill = Brushes.BlueViolet };
+
+        }
+
+        public void Move()
+        {
+            Dice dice = new Dice();
+            LocationX += dice.RollDice(1,7);
+            Grid.SetColumn(Ellipse, LocationX);
+        }
     }
 }
