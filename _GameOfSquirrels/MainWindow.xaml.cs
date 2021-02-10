@@ -46,7 +46,7 @@ namespace _GameOfSquirrels
                 Playerlist[0].Ellipse.Fill = Brushes.Pink;
             }
 
-            if (Playerlist[0].LocationX == 20)
+            if (Playerlist[0].LocationX >= 20)
             {
                 Playerlist[0].LocationX = 0;
                 Grid.SetColumn(Playerlist[0].Ellipse, Playerlist[0].LocationX);

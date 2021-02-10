@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
-namespace _GameOfSquirrels
+namespace _GameOfSquirrels.Tiles
 {
     public abstract class Tile : ITile
     {

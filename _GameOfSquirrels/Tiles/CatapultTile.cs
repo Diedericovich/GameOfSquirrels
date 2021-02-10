@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using _GameOfSquirrels.Tiles;
 
 namespace _GameOfSquirrels
 {
@@ -17,7 +19,8 @@ namespace _GameOfSquirrels
 
         public override void InteractWith(IPawn pawn)
         {
-            pawn.Move(-1);
+            pawn.Move(-3);
+            MessageBox.Show("You got thrown back");
         }
     }
 }
