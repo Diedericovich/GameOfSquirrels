@@ -41,6 +41,15 @@ namespace _GameOfSquirrels
             CatapultTile testtile = new CatapultTile(5, 5);
             GridGame.Children.Add(testtile.TileBorder);
             Grid.SetColumn(testtile.TileBorder, testtile.LocationX);
+            do
+            {
+                if (pawn.LocationX == testtile.LocationX)
+                {
+                    testtile.InteractWith(pawn);
+                }
+            } while (pawn.LocationX < 10);
+
+            MessageBox.Show("You win");
         }
 
         private void TestButtonClick(object sender, RoutedEventArgs e)
