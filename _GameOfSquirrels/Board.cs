@@ -1,11 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Controls;
 
 namespace _GameOfSquirrels
 {
-    class Board
+    internal class Board
     {
+        public List<IPawn> PlayerList;
+
+        public List<ITile> TileList;
+        public Grid BoardGrid;
+
         private int _minBoardHeight;
 
         public int MinBoardHeight
@@ -38,21 +44,27 @@ namespace _GameOfSquirrels
             set { _maxBoardWidth = value; }
         }
 
-        public List<IPawn> PlayerList;
-
-
-        public List<ITile> TileList;
-
-        public Board(List<IPawn> players, List<ITile> tiles)
+        public Board(Grid grid, int height, int width)
         {
-            PlayerList = players;
-            TileList = tiles;
+            BoardGrid = grid;
+            //PlayerList = players;
+            //TileList = tiles;
+            MaxBoardHeight = height;
+            MaxBoardWidth = width;
+            SetSize();
         }
 
+        public void SetSize()
+        {
+            for (int i = 0; i < MaxBoardWidth; i++)
+            {
+                BoardGrid.ColumnDefinitions.Add(new ColumnDefinition());
+            }
 
-
-
-
-
+            for (int i = 0; i < MaxBoardHeight; i++)
+            {
+                BoardGrid.RowDefinitions.Add(new RowDefinition());
+            }
+        }
     }
 }

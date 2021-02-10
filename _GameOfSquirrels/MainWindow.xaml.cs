@@ -20,16 +20,19 @@ namespace _GameOfSquirrels
     /// </summary>
     public partial class MainWindow : Window
     {
-        Dice dice = new Dice();
+        private Dice dice = new Dice();
+        private Board board;
 
         public MainWindow()
         {
             InitializeComponent();
+            board = new Board(GridOuter, 2, 60);
+            GridOuter.ShowGridLines = true;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Test1.Content = dice.RollDice(1, 7);
+            //Test1.Content = dice.RollDice(1, 7);
         }
     }
 }
