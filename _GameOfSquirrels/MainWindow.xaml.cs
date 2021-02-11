@@ -27,7 +27,8 @@ namespace _GameOfSquirrels
         public MainWindow()
         {
             InitializeComponent();
-            board = new Board(GridOuter, 0, 60);
+            board = new Board(GridOuter, 0, 50);
+            GridOuter.Height = 10 * 30;
             GridOuter.ShowGridLines = true;
         }
 

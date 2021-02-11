@@ -58,12 +58,13 @@ namespace _GameOfSquirrels
         {
             for (int i = 0; i < MaxBoardWidth; i++)
             {
-                BoardGrid.ColumnDefinitions.Add(new ColumnDefinition());
+
+                BoardGrid.ColumnDefinitions.Add(new ColumnDefinition() { MinWidth = 30, MaxWidth=30 }) ;
             }
 
             for (int i = 0; i < MaxBoardHeight; i++)
             {
-                BoardGrid.RowDefinitions.Add(new RowDefinition());
+                BoardGrid.RowDefinitions.Add(new RowDefinition() { MinHeight = 30, MaxHeight= 30 });
             }
         }
     }
