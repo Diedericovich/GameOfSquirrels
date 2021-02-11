@@ -13,10 +13,10 @@ namespace _GameOfSquirrels
             TileBorder.Background = Brushes.IndianRed;
         }
 
-        public override void InteractWith(IPawn pawn)
+        public override int GetInteraction()
         {
             MessageBox.Show("Catapult! You will get thrown back three squares!");
-            pawn.Move(-3);
+            return -3;
         }
     }
 }

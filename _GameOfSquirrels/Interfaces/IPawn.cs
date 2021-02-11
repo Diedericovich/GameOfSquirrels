@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Windows.Shapes;
+﻿using System.Windows.Shapes;
 
 namespace _GameOfSquirrels
 {
@@ -11,6 +10,7 @@ namespace _GameOfSquirrels
         int LocationY { get; set; }
 
         void Move();
+
         void Move(int x);
     }
 }

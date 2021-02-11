@@ -20,7 +20,6 @@ namespace _GameOfSquirrels
             set { _locationY = value; }
         }
 
-
         public Border TileBorder { get; set; }
 
         public Tile(int locationX, int locationY)
@@ -29,8 +28,9 @@ namespace _GameOfSquirrels
             LocationY = locationY;
         }
 
-        public virtual void InteractWith(IPawn pawn)
+        public virtual int GetInteraction()
         {
+            return 0;
         }
     }
 }

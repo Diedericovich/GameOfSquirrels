@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace _GameOfSquirrels
+﻿namespace _GameOfSquirrels
 {
-    class Game
+    internal class Game
     {
-        
     }
 }

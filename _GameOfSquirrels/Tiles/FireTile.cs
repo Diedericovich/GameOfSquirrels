@@ -7,8 +7,9 @@
         {
         }
 
-        public override void InteractWith(IPawn pawn)
+        public override int GetInteraction()
         {
+            return 0;
         }
     }
 }

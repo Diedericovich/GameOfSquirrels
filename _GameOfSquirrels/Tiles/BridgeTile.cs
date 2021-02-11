@@ -13,10 +13,10 @@ namespace _GameOfSquirrels
             TileBorder.Background = Brushes.Black;
         }
 
-        public override void InteractWith(IPawn pawn)
+        public override int GetInteraction()
         {
             MessageBox.Show("Going over a bridge! You move two spaces forward!");
-            pawn.Move(2);
+            return 2;
         }
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
@@ -57,27 +53,6 @@ namespace _GameOfSquirrels
             LocationX += x;
             Grid.SetColumn(Ellipse, LocationX);
             //CheckTile(tiles);
-
-        }
-
-        public void CheckTile(List<ITile> tiles)
-        {
-            foreach (var item in tiles)
-            {
-
-                if (LocationX == item.LocationX)
-                {
-                    item.InteractWith(this);
-                }
-            }
-
-            if (LocationX >= 20)
-            {
-                LocationX = 0;
-                Grid.SetColumn(Ellipse, LocationX);
-            }
-
-
         }
     }
 }

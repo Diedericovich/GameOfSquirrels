@@ -8,6 +8,6 @@ namespace _GameOfSquirrels
         int LocationY { get; set; }
         Border TileBorder { get; set; }
 
-        void InteractWith(IPawn pawn);
+        int GetInteraction();
     }
 }

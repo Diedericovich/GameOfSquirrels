@@ -1,9 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Media.Effects;
-using _GameOfSquirrels;
 
 namespace _GameOfSquirrels
 {
@@ -45,14 +42,20 @@ namespace _GameOfSquirrels
 
         private void TestButtonClick(object sender, RoutedEventArgs e)
         {
-            Playerlist[0].Move();
+            Dice dice = new Dice();
+            int result = dice.RollDice(1, 7);
+            MovePawn(result);
+        }
+
+        public void MovePawn(int move)
+        {
+            Playerlist[0].Move(move);
             Dicelabel.Content = Playerlist[0].LastRoll;
             foreach (var item in BoardTiles)
             {
-
                 if (Playerlist[0].LocationX == item.LocationX)
                 {
-                    item.InteractWith(Playerlist[0]);
+                    MovePawn(item.GetInteraction());
                 }
             }
 
@@ -61,7 +64,6 @@ namespace _GameOfSquirrels
                 Playerlist[0].LocationX = 0;
                 Grid.SetColumn(Playerlist[0].Ellipse, Playerlist[0].LocationX);
             }
-
         }
     }
 }

@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace _GameOfSquirrels
 {
-    class TileFactory
+    internal class TileFactory
     {
         public List<ITile> CreateTiles()
         {
@@ -13,7 +11,7 @@ namespace _GameOfSquirrels
             for (int i = 0; i < 4; i++)
             {
                 counter += 4;
-                tiles.Add(new CatapultTile(counter,0));
+                tiles.Add(new CatapultTile(counter, 0));
             }
             for (int i = 0; i < 2; i++)
             {
@@ -22,7 +20,6 @@ namespace _GameOfSquirrels
             }
 
             return tiles;
-        
         }
     }
 }
