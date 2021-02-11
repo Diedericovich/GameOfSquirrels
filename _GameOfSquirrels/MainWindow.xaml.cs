@@ -50,10 +50,10 @@ namespace _GameOfSquirrels
             foreach (var item in BoardTiles)
             {
 
-            if (Playerlist[0].LocationX == item.LocationX)
-            {
-                item.InteractWith(Playerlist[0]);
-            }
+                if (Playerlist[0].LocationX == item.LocationX)
+                {
+                    item.InteractWith(Playerlist[0]);
+                }
             }
 
             if (Playerlist[0].LocationX >= 20)

@@ -56,6 +56,28 @@ namespace _GameOfSquirrels
         {
             LocationX += x;
             Grid.SetColumn(Ellipse, LocationX);
+            //CheckTile(tiles);
+
+        }
+
+        public void CheckTile(List<ITile> tiles)
+        {
+            foreach (var item in tiles)
+            {
+
+                if (LocationX == item.LocationX)
+                {
+                    item.InteractWith(this);
+                }
+            }
+
+            if (LocationX >= 20)
+            {
+                LocationX = 0;
+                Grid.SetColumn(Ellipse, LocationX);
+            }
+
+
         }
     }
 }
