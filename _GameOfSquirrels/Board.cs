@@ -47,8 +47,6 @@ namespace _GameOfSquirrels
         public Board(Grid grid, int height, int width)
         {
             BoardGrid = grid;
-            //PlayerList = players;
-            //TileList = tiles;
             MaxBoardHeight = height;
             MaxBoardWidth = width;
             SetSize();
@@ -63,7 +61,7 @@ namespace _GameOfSquirrels
 
             for (int i = 0; i < MaxBoardHeight; i++)
             {
-                BoardGrid.RowDefinitions.Add(new RowDefinition() { MaxHeight = 15, MinHeight = 15 });
+                BoardGrid.RowDefinitions.Add(new RowDefinition());
             }
         }
     }

@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace _GameOfSquirrels.Tiles
+namespace _GameOfSquirrels
 {
     public class CatapultTile : Tile
     {

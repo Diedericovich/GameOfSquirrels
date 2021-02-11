@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace _GameOfSquirrels.Tiles
+namespace _GameOfSquirrels
 {
     public abstract class Tile : ITile
     {
@@ -20,7 +20,8 @@ namespace _GameOfSquirrels.Tiles
             set { _locationY = value; }
         }
 
-        public Border TileBorder;
+
+        public Border TileBorder { get; set; }
 
         public Tile(int locationX, int locationY)
         {

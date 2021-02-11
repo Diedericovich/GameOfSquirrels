@@ -1,4 +1,4 @@
-﻿namespace _GameOfSquirrels.Tiles
+﻿namespace _GameOfSquirrels
 {
     internal class BridgeTile : Tile
     {
