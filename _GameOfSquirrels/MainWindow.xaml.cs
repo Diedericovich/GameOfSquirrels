@@ -25,6 +25,11 @@ namespace _GameOfSquirrels
             int result = dice.RollDice(1, 7);
             Dicelabel.Content = result;
             game.MovePawn(result);
+            game.CurrentPlayer++;
+            if (game.CurrentPlayer > game.Playerlist.Count -1)
+            {
+                game.CurrentPlayer = 0;
+            }
 
         }
 

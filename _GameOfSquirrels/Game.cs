@@ -12,9 +12,12 @@ namespace _GameOfSquirrels
 
         public Grid GridGame { get; set; }
 
+        public int CurrentPlayer { get; set; }
+
         public Game(Grid gridGame)
         {
             GridGame = gridGame;
+            CurrentPlayer = 0;
         }
 
         public void GamePlay()
@@ -43,19 +46,19 @@ namespace _GameOfSquirrels
 
         public void MovePawn(int move)
         {
-            Playerlist[0].Move(move);
+            Playerlist[CurrentPlayer].Move(move);
             foreach (var item in BoardTiles)
             {
-                if (Playerlist[0].LocationX == item.LocationX)
+                if (Playerlist[CurrentPlayer].LocationX == item.LocationX)
                 {
                     MovePawn(item.GetInteraction());
                 }
             }
 
-            if (Playerlist[0].LocationX >= 20)
+            if (Playerlist[CurrentPlayer].LocationX >= 20)
             {
-                Playerlist[0].LocationX = 0;
-                Grid.SetColumn(Playerlist[0].Ellipse, Playerlist[0].LocationX);
+                Playerlist[CurrentPlayer].LocationX = 0;
+                Grid.SetColumn(Playerlist[CurrentPlayer].Ellipse, Playerlist[CurrentPlayer].LocationX);
             }
         }
     }
