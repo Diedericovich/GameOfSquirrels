@@ -3,7 +3,7 @@ using System.Windows.Controls;
 
 namespace _GameOfSquirrels
 {
-   public class Game
+    public class Game
     {
         private Dice dice = new Dice();
         private Board board;
@@ -20,10 +20,28 @@ namespace _GameOfSquirrels
             CurrentPlayer = 0;
         }
 
-        public void GamePlay()
+        public void GenerateBoard()
         {
             board = new Board(GridGame, 0, 20);
             GridGame.ShowGridLines = true;
+            GenerateTiles();
+            GeneratePawns();
+        }
+
+        private void GeneratePawns()
+        {
+            PawnFactory pawnFactory = new PawnFactory();
+            Playerlist = pawnFactory.CreatePawns(4);
+            foreach (var item in Playerlist)
+            {
+                GridGame.Children.Add(item.Ellipse);
+                Grid.SetColumn(item.Ellipse, item.LocationX);
+                Grid.SetRow(item.Ellipse, item.LocationY);
+            }
+        }
+
+        private void GenerateTiles()
+        {
             TileFactory tileFactory = new TileFactory();
             BoardTiles = tileFactory.CreateTiles();
             foreach (var tile in BoardTiles)
@@ -31,17 +49,6 @@ namespace _GameOfSquirrels
                 GridGame.Children.Add(tile.TileBorder);
                 Grid.SetColumn(tile.TileBorder, tile.LocationX);
             }
-
-            Pawn pawn1 = new Pawn(3, 1);
-            Pawn pawn2 = new Pawn(1, 1);
-            Playerlist = new List<IPawn> { pawn1, pawn2 };
-            foreach (var item in Playerlist)
-            {
-                GridGame.Children.Add(item.Ellipse);
-                Grid.SetColumn(item.Ellipse, item.LocationX);
-                Grid.SetRow(item.Ellipse, item.LocationY);
-            }
-
         }
 
         public void MovePawn(int move)
@@ -60,6 +67,22 @@ namespace _GameOfSquirrels
                 Playerlist[CurrentPlayer].LocationX = 0;
                 Grid.SetColumn(Playerlist[CurrentPlayer].Ellipse, Playerlist[CurrentPlayer].LocationX);
             }
+        }
+
+        private void NextTurn()
+        {
+            CurrentPlayer++;
+            if (CurrentPlayer > Playerlist.Count - 1)
+            {
+                CurrentPlayer = 0;
+            }
+        }
+
+        public void DoTurn()
+        {
+            Dice dice = new Dice();
+            MovePawn(dice.RollDice(1, 7));
+            NextTurn();
         }
     }
 }
