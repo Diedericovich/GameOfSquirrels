@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using _GameOfSquirrels.Tiles;
 
-namespace _GameOfSquirrels
+namespace _GameOfSquirrels.Tiles
 {
     public class CatapultTile : Tile
     {
@@ -14,13 +10,13 @@ namespace _GameOfSquirrels
             : base(locationX, locationY)
         {
             TileBorder = new Border();
-            TileBorder.Background = Brushes.SaddleBrown;
+            TileBorder.Background = Brushes.IndianRed;
         }
 
         public override void InteractWith(IPawn pawn)
         {
+            MessageBox.Show("Catapult! You will get thrown back three squares!");
             pawn.Move(-3);
-            MessageBox.Show("You got thrown back");
         }
     }
 }

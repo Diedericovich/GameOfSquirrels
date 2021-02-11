@@ -11,6 +11,7 @@ namespace _GameOfSquirrels
     public class Pawn : IPawn
     {
         private int _locationX;
+        public int LastRoll { get; set; }
 
         public int LocationX
         {
@@ -38,13 +39,16 @@ namespace _GameOfSquirrels
         {
             LocationX = locationX;
             LocationY = locationY;
-            Ellipse = new Ellipse() { Fill = Brushes.BlueViolet };
+
+            Ellipse = new Ellipse() { Fill = Brushes.DarkRed, Height = 20, Width = 20, };
         }
 
         public void Move()
         {
             Dice dice = new Dice();
-            LocationX += dice.RollDice(1, 7);
+            int roll = dice.RollDice(1, 7);
+            LastRoll = roll;
+            LocationX += roll;
             Grid.SetColumn(Ellipse, LocationX);
         }
 

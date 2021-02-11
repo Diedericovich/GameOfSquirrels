@@ -7,8 +7,8 @@
         Title="MainWindow"
         Width="1800"
         Height="900"
-        mc:Ignorable="d"
-        Background="Azure">
+        Background="Azure"
+        mc:Ignorable="d">
     <Grid x:Name="GridOuter">
         <!--#region Grid Columns & Rows-->
         <Grid.ColumnDefinitions>
@@ -38,5 +38,8 @@
         <Button Grid.Row="3"
                 Grid.Column="3"
                 Click="TestButtonClick" />
+        <Label x:Name="Dicelabel"
+               Grid.Row="2"
+               Grid.Column="3" />
     </Grid>
 </Window>
