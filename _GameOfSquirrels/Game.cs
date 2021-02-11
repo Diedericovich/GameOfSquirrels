@@ -9,6 +9,8 @@ namespace _GameOfSquirrels
         private Board board;
         public List<IPawn> Playerlist;
         public List<ITile> BoardTiles;
+        public int RoundCounter { get; set; }
+        public int LastNumberRolled { get; set; }
 
         public Grid GridGame { get; set; }
 
@@ -31,7 +33,7 @@ namespace _GameOfSquirrels
         private void GeneratePawns()
         {
             PawnFactory pawnFactory = new PawnFactory();
-            Playerlist = pawnFactory.CreatePawns(4);
+            Playerlist = pawnFactory.CreatePawns(1);
             foreach (var item in Playerlist)
             {
                 GridGame.Children.Add(item.Ellipse);
@@ -44,7 +46,7 @@ namespace _GameOfSquirrels
         {
             TileFactory tileFactory = new TileFactory();
             BoardTiles = tileFactory.CreateTiles();
-            foreach (var tile in BoardTiles)
+            foreach (ITile tile in BoardTiles)
             {
                 GridGame.Children.Add(tile.TileBorder);
                 Grid.SetColumn(tile.TileBorder, tile.LocationX);
@@ -54,11 +56,11 @@ namespace _GameOfSquirrels
         public void MovePawn(int move)
         {
             Playerlist[CurrentPlayer].Move(move);
-            foreach (var item in BoardTiles)
+            foreach (ITile tile in BoardTiles)
             {
-                if (Playerlist[CurrentPlayer].LocationX == item.LocationX)
+                if (Playerlist[CurrentPlayer].LocationX == tile.LocationX)
                 {
-                    MovePawn(item.GetInteraction());
+                    MovePawn(tile.GetInteraction());
                 }
             }
 
@@ -75,13 +77,16 @@ namespace _GameOfSquirrels
             if (CurrentPlayer > Playerlist.Count - 1)
             {
                 CurrentPlayer = 0;
+                RoundCounter++;
             }
         }
 
         public void DoTurn()
         {
             Dice dice = new Dice();
-            MovePawn(dice.RollDice(1, 7));
+            int roll = dice.RollDice(1, 7);
+            LastNumberRolled = roll;
+            MovePawn(roll);
             NextTurn();
         }
     }

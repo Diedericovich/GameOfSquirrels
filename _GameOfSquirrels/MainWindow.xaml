@@ -38,8 +38,16 @@
         <Button Grid.Row="3"
                 Grid.Column="3"
                 Click="TestButtonClick" />
-        <Label x:Name="Dicelabel"
+        <Label x:Name="lblDiceResult"
                Grid.Row="2"
-               Grid.Column="3" />
+               Grid.Column="3"
+               HorizontalAlignment="Left"/>
+        <Label x:Name="lblCurrentRound"
+               Grid.Column="1"
+               HorizontalAlignment="Center" />
+        <Label x:Name="lblCurrentPlayer"
+               Grid.Row="2"
+               Grid.Column="3"
+               HorizontalAlignment="Right" />
     </Grid>
 </Window>
