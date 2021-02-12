@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace _GameOfSquirrels
@@ -9,6 +10,7 @@ namespace _GameOfSquirrels
         private Board board;
         public List<IPawn> Playerlist;
         public List<ITile> BoardTiles;
+        public int BoardWidth;
         public int RoundCounter { get; set; }
         public int LastNumberRolled { get; set; }
 
@@ -28,8 +30,9 @@ namespace _GameOfSquirrels
 
         public void GenerateBoard()
         {
-            board = new Board(GridGame, 0, 20);
-            GridGame.ShowGridLines = true;
+            BoardWidth = 40;
+            board = new Board(GridGame, 4, BoardWidth);
+
             GenerateTiles();
             GeneratePawns();
         }
@@ -37,7 +40,7 @@ namespace _GameOfSquirrels
         private void GeneratePawns()
         {
             PawnFactory pawnFactory = new PawnFactory();
-            Playerlist = pawnFactory.CreatePawns(1);
+            Playerlist = pawnFactory.CreatePawns(4);
             foreach (var item in Playerlist)
             {
                 GridGame.Children.Add(item.Ellipse);
@@ -54,6 +57,7 @@ namespace _GameOfSquirrels
             {
                 GridGame.Children.Add(tile.TileBorder);
                 Grid.SetColumn(tile.TileBorder, tile.LocationX);
+                Grid.SetRow(tile.TileBorder, tile.LocationY);
             }
         }
 
@@ -64,14 +68,29 @@ namespace _GameOfSquirrels
             {
                 if (Playerlist[CurrentPlayer].LocationX == tile.LocationX)
                 {
-                    MovePawn(tile.GetInteraction());
+                    if (tile is SquirrelTile)
+                    {
+                        tile.GetInteraction();
+                        MovePawn(LastNumberRolled);
+                    }
+                    else if (tile is FireTile)
+                    {
+                        tile.GetInteraction();
+                        Grid.SetColumn(Playerlist[CurrentPlayer].Ellipse, 0);
+                        Playerlist[CurrentPlayer].LocationX = 0;
+                    }
+                    else
+                    {
+                        MovePawn(tile.GetInteraction());
+                    }
                 }
             }
 
-            if (Playerlist[CurrentPlayer].LocationX >= 20)
+            if (Playerlist[CurrentPlayer].LocationX >= BoardWidth - 1)
             {
-                Playerlist[CurrentPlayer].LocationX = 0;
-                Grid.SetColumn(Playerlist[CurrentPlayer].Ellipse, Playerlist[CurrentPlayer].LocationX);
+                MessageBox.Show($"Player{CurrentPlayer} Wins!");
+                //Playerlist[CurrentPlayer].LocationX = 0;
+                //Grid.SetColumn(Playerlist[CurrentPlayer].Ellipse, Playerlist[CurrentPlayer].LocationX);
             }
         }
 
