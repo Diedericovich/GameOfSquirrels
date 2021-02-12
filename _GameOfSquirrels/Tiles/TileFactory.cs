@@ -8,7 +8,7 @@ namespace _GameOfSquirrels
         {
             List<ITile> tiles = new List<ITile>();
 
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 4; i++)
             {
                 //tiles.Add(new SquirrelTile(3, i));
                 //tiles.Add(new CatapultTile(4, i));
@@ -21,12 +21,14 @@ namespace _GameOfSquirrels
                 //tiles.Add(new BridgeTile(15, i));
                 //tiles.Add(new CatapultTile(17, i));
                 tiles.Add(new BridgeTile(3, i));
+                tiles.Add(new CatapultTile(4, i));
                 tiles.Add(new BridgeTile(5, i));
+                tiles.Add(new BridgeTile(6, i));
                 tiles.Add(new BridgeTile(7, i));
+                tiles.Add(new BridgeTile(8, i));
                 tiles.Add(new BridgeTile(9, i));
-                tiles.Add(new BridgeTile(11, i));
-                tiles.Add(new BridgeTile(13, i));
-                tiles.Add(new BridgeTile(5, i));
+                tiles.Add(new BridgeTile(10, i));
+                tiles.Add(new FireTile(11, i));
 
             }
 

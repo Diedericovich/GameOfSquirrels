@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace _GameOfSquirrels
 {
@@ -27,8 +28,9 @@ namespace _GameOfSquirrels
         public void GenerateBoard()
         {
             BoardWidth = 20;
-            board = new Board(GridGame, 2, BoardWidth);
-            GridGame.ShowGridLines = true;
+            board = new Board(GridGame, 4, BoardWidth);
+            //GridGame.ShowGridLines = true;
+            //GridGame.Background = new SolidColorBrush(Color.FromRgb(0,115,21));
             GenerateTiles();
             GeneratePawns();
         }
@@ -36,7 +38,7 @@ namespace _GameOfSquirrels
         private void GeneratePawns()
         {
             PawnFactory pawnFactory = new PawnFactory();
-            Playerlist = pawnFactory.CreatePawns(2);
+            Playerlist = pawnFactory.CreatePawns(4);
             foreach (var item in Playerlist)
             {
                 GridGame.Children.Add(item.Ellipse);
