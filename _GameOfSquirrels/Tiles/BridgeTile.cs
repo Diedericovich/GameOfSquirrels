@@ -19,6 +19,7 @@ namespace _GameOfSquirrels
             image.ImageSource = img;
             image.Stretch = Stretch.Fill;
             TileBorder.Background = image;
+            TileBorder.Margin = new Thickness(1);
         }
 
         public override int GetInteraction()

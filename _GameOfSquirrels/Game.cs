@@ -12,6 +12,7 @@ namespace _GameOfSquirrels
         public List<IPawn> Playerlist;
         public List<ITile> BoardTiles;
         public int BoardWidth;
+        public int BoardHeight;
         public int RoundCounter { get; set; }
         public int LastNumberRolled { get; set; }
 
@@ -21,14 +22,16 @@ namespace _GameOfSquirrels
 
         public Game(Grid gridGame)
         {
+            BoardWidth = 40;
+            BoardHeight = 4;
             GridGame = gridGame;
+            //GridGame.Height = BoardHeight * 25;
             CurrentPlayer = 0;
         }
 
         public void GenerateBoard()
         {
-            BoardWidth = 20;
-            board = new Board(GridGame, 4, BoardWidth);
+            board = new Board(GridGame, BoardHeight, BoardWidth);
             //GridGame.ShowGridLines = true;
             //GridGame.Background = new SolidColorBrush(Color.FromRgb(0,115,21));
             GenerateTiles();
@@ -50,7 +53,7 @@ namespace _GameOfSquirrels
         private void GenerateTiles()
         {
             TileFactory tileFactory = new TileFactory();
-            BoardTiles = tileFactory.CreateTiles();
+            BoardTiles = tileFactory.CreateTiles(BoardHeight, BoardWidth);
             foreach (ITile tile in BoardTiles)
             {
                 GridGame.Children.Add(tile.TileBorder);
@@ -64,7 +67,7 @@ namespace _GameOfSquirrels
             Playerlist[CurrentPlayer].Move(move);
             foreach (ITile tile in BoardTiles)
             {
-                if (Playerlist[CurrentPlayer].LocationX == tile.LocationX)
+                if (Playerlist[CurrentPlayer].LocationX == tile.LocationX && Playerlist[CurrentPlayer].LocationY == tile.LocationY)
                 {
                     if (tile is SquirrelTile)
                     {

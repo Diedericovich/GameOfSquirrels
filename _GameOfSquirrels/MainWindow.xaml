@@ -7,7 +7,6 @@
         Title="MainWindow"
         Width="1200"
         Height="600"
-        Background="Azure"
         mc:Ignorable="d">
     <Grid x:Name="GridOuter">
         <!--#region Grid Columns & Rows-->

@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Media;
 
 namespace _GameOfSquirrels
 {
@@ -12,6 +13,7 @@ namespace _GameOfSquirrels
         public MainWindow()
         {
             InitializeComponent();
+            //this.Background = new SolidColorBrush(Color.FromRgb(0, 115, 21));
             game = new Game(GridGame);
             game.GenerateBoard();
         }

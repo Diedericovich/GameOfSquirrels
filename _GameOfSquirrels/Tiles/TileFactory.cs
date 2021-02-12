@@ -4,33 +4,25 @@ namespace _GameOfSquirrels
 {
     internal class TileFactory
     {
-        public List<ITile> CreateTiles()
+        public List<ITile> CreateTiles(int boardHeight, int boardWidth)
         {
             List<ITile> tiles = new List<ITile>();
 
-            for (int i = 0; i < 4; i++)
-            {
-                //tiles.Add(new SquirrelTile(3, i));
-                //tiles.Add(new CatapultTile(4, i));
-                //tiles.Add(new BridgeTile(5, i));
-                //tiles.Add(new BridgeTile(6, i));
-                //tiles.Add(new CatapultTile(8, i));
-                //tiles.Add(new FireTile(10, i));
-                //tiles.Add(new SquirrelTile(12, i));
-                //tiles.Add(new FireTile(13, i));
-                //tiles.Add(new BridgeTile(15, i));
-                //tiles.Add(new CatapultTile(17, i));
-                tiles.Add(new BridgeTile(3, i));
-                tiles.Add(new CatapultTile(4, i));
-                tiles.Add(new BridgeTile(5, i));
-                tiles.Add(new BridgeTile(6, i));
-                tiles.Add(new BridgeTile(7, i));
-                tiles.Add(new BridgeTile(8, i));
-                tiles.Add(new BridgeTile(9, i));
-                tiles.Add(new BridgeTile(10, i));
-                tiles.Add(new FireTile(11, i));
+            //for (int i = 0; i < boardHeight; i++)
+            //{
+            //    for (int j = 0; j < boardWidth; j++)
+            //    {
+            //        tiles.Add(new BridgeTile(j, i));
+            //    }
 
-            }
+            //}
+
+
+            tiles.Add(new BridgeTile(5, 2));
+            tiles.Add(new BridgeTile(15, 4));
+            tiles.Add(new BridgeTile(3, 0));
+            tiles.Add(new BridgeTile(12, 2));
+            tiles.Add(new BridgeTile(8, 3));
 
 
             //int counter = 2;
