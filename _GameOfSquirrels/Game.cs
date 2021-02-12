@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Numerics;
+using System.Windows;
 using System.Windows.Controls;
 using _GameOfSquirrels.Tiles;
+using System.Windows.Media;
 
 namespace _GameOfSquirrels
 {
@@ -11,6 +13,8 @@ namespace _GameOfSquirrels
         private Board board;
         public List<IPawn> Playerlist;
         public List<ITile> BoardTiles;
+        public int BoardWidth;
+        public int BoardHeight;
         public int RoundCounter { get; set; }
         public int LastNumberRolled { get; set; }
 
@@ -20,14 +24,18 @@ namespace _GameOfSquirrels
 
         public Game(Grid gridGame)
         {
+            BoardWidth = 40;
+            BoardHeight = 4;
             GridGame = gridGame;
+            //GridGame.Height = BoardHeight * 25;
             CurrentPlayer = 0;
         }
 
         public void GenerateBoard()
         {
-            board = new Board(GridGame, 50, 50);
-            GridGame.ShowGridLines = true;
+            board = new Board(GridGame, BoardHeight, BoardWidth);
+            //GridGame.ShowGridLines = true;
+            //GridGame.Background = new SolidColorBrush(Color.FromRgb(0,115,21));
             GenerateTiles();
             GeneratePawns();
         }
@@ -35,7 +43,7 @@ namespace _GameOfSquirrels
         private void GeneratePawns()
         {
             PawnFactory pawnFactory = new PawnFactory();
-            Playerlist = pawnFactory.CreatePawns(2);
+            Playerlist = pawnFactory.CreatePawns(4);
             foreach (var item in Playerlist)
             {
                 GridGame.Children.Add(item.Ellipse);
@@ -47,11 +55,12 @@ namespace _GameOfSquirrels
         private void GenerateTiles()
         {
             TileFactory tileFactory = new TileFactory();
-            BoardTiles = tileFactory.CreateTiles();
+            BoardTiles = tileFactory.CreateTiles(BoardHeight, BoardWidth);
             foreach (ITile tile in BoardTiles)
             {
                 GridGame.Children.Add(tile.TileBorder);
                 Grid.SetColumn(tile.TileBorder, tile.LocationX);
+                Grid.SetRow(tile.TileBorder, tile.LocationY);
             }
         }
 
@@ -60,16 +69,32 @@ namespace _GameOfSquirrels
             Playerlist[CurrentPlayer].Move(move);
             foreach (ITile tile in BoardTiles)
             {
-                if (Playerlist[CurrentPlayer].LocationX == tile.LocationX)
+                if (Playerlist[CurrentPlayer].LocationX == tile.LocationX && Playerlist[CurrentPlayer].LocationY == tile.LocationY)
                 {
-                    MovePawn(tile.GetInteraction());
+                    if (tile is SquirrelTile)
+                    {
+                        tile.GetInteraction();
+                        MovePawn(LastNumberRolled);
+                    }
+                    else if (tile is FireTile)
+                    {
+                        tile.GetInteraction();
+                        Grid.SetColumn(Playerlist[CurrentPlayer].Ellipse, 0);
+                        Playerlist[CurrentPlayer].LocationX = 0;
+                    }
+                    else
+                    {
+                        MovePawn(tile.GetInteraction());
+                    }
+                    
                 }
             }
 
-            if (Playerlist[CurrentPlayer].LocationX >= 20)
+            if (Playerlist[CurrentPlayer].LocationX >= BoardWidth-1)
             {
-                Playerlist[CurrentPlayer].LocationX = 0;
-                Grid.SetColumn(Playerlist[CurrentPlayer].Ellipse, Playerlist[CurrentPlayer].LocationX);
+                MessageBox.Show($"Player{CurrentPlayer} Wins!");
+                //Playerlist[CurrentPlayer].LocationX = 0;
+                //Grid.SetColumn(Playerlist[CurrentPlayer].Ellipse, Playerlist[CurrentPlayer].LocationX);
             }
         }
 
