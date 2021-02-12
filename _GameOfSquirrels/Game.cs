@@ -1,9 +1,7 @@
-﻿using System;
+﻿using _GameOfSquirrels.Tiles;
+using System;
 using System.Collections.Generic;
-using System.Numerics;
-using System.Windows;
 using System.Windows.Controls;
-using _GameOfSquirrels.Tiles;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -17,6 +15,7 @@ namespace _GameOfSquirrels
         public List<ITile> BoardTiles;
         public int BoardWidth;
         public int BoardHeight;
+        public bool PlayerFinishedMoving;
         public int RoundCounter { get; set; }
         public int LastNumberRolled { get; set; }
 
@@ -69,7 +68,28 @@ namespace _GameOfSquirrels
 
         public void MovePawn(int move)
         {
-            Playerlist[CurrentPlayer].Move(move);
+            InteractWithTile();
+
+            if (Playerlist[CurrentPlayer].LocationX == BoardWidth - 1)
+            {
+                SetPlayerNewRow();
+            }
+            else
+            {
+                Playerlist[CurrentPlayer].Move(move);
+            }
+        }
+
+        private void SetPlayerNewRow()
+        {
+            Playerlist[CurrentPlayer].LocationY += 1;
+            Playerlist[CurrentPlayer].LocationX = 0;
+            Grid.SetRow(Playerlist[CurrentPlayer].Ellipse, Playerlist[CurrentPlayer].LocationY);
+            Grid.SetColumn(Playerlist[CurrentPlayer].Ellipse, Playerlist[CurrentPlayer].LocationX);
+        }
+
+        private void InteractWithTile()
+        {
             foreach (ITile tile in BoardTiles)
             {
                 if (Playerlist[CurrentPlayer].LocationX == tile.LocationX && Playerlist[CurrentPlayer].LocationY == tile.LocationY)
@@ -112,6 +132,7 @@ namespace _GameOfSquirrels
 
         public void DoTurn()
         {
+            PlayerFinishedMoving = false;
             Dice dice = new Dice();
             int roll = dice.RollDice(1, 7);
             LastNumberRolled = roll;
@@ -119,7 +140,16 @@ namespace _GameOfSquirrels
 
             for (int i = 0; i < movesavailable; i++)
             {
-                MovePawn(1);
+                if (i == movesavailable - 1)
+                {
+                    PlayerFinishedMoving = true;
+                    MovePawn(1);
+                    
+                }
+                else
+                {
+                    MovePawn(1);
+                }
             }
 
             NextTurn();

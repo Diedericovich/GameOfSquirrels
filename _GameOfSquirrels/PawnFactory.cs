@@ -23,7 +23,7 @@ namespace _GameOfSquirrels
                         break;
 
                     case 2:
-                        playerList[2].Ellipse.Fill = Brushes.Green;
+                        playerList[2].Ellipse.Fill = Brushes.Pink;
                         break;
 
                     case 3:
