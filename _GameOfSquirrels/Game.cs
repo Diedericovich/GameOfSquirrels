@@ -26,9 +26,9 @@ namespace _GameOfSquirrels
 
         public void GenerateBoard()
         {
-            BoardWidth = 20;
-            board = new Board(GridGame, 2, BoardWidth);
-            GridGame.ShowGridLines = true;
+            BoardWidth = 40;
+            board = new Board(GridGame, 4, BoardWidth);
+
             GenerateTiles();
             GeneratePawns();
         }
@@ -36,7 +36,7 @@ namespace _GameOfSquirrels
         private void GeneratePawns()
         {
             PawnFactory pawnFactory = new PawnFactory();
-            Playerlist = pawnFactory.CreatePawns(2);
+            Playerlist = pawnFactory.CreatePawns(4);
             foreach (var item in Playerlist)
             {
                 GridGame.Children.Add(item.Ellipse);
@@ -79,11 +79,10 @@ namespace _GameOfSquirrels
                     {
                         MovePawn(tile.GetInteraction());
                     }
-                    
                 }
             }
 
-            if (Playerlist[CurrentPlayer].LocationX >= BoardWidth-1)
+            if (Playerlist[CurrentPlayer].LocationX >= BoardWidth - 1)
             {
                 MessageBox.Show($"Player{CurrentPlayer} Wins!");
                 //Playerlist[CurrentPlayer].LocationX = 0;
