@@ -6,7 +6,6 @@ namespace _GameOfSquirrels
     internal class Board
     {
         public List<IPawn> PlayerList;
-
         public List<ITile> TileList;
         public Grid BoardGrid;
 
