@@ -68,8 +68,6 @@ namespace _GameOfSquirrels
 
         public void MovePawn(int move)
         {
-            InteractWithTile();
-
             if (Playerlist[CurrentPlayer].LocationX == BoardWidth - 1)
             {
                 SetPlayerNewRow();
@@ -78,6 +76,8 @@ namespace _GameOfSquirrels
             {
                 Playerlist[CurrentPlayer].Move(move);
             }
+
+            InteractWithTile();
         }
 
         private void SetPlayerNewRow()
