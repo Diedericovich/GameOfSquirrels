@@ -12,6 +12,10 @@ namespace _GameOfSquirrels
         public int RoundCounter { get; set; }
         public int LastNumberRolled { get; set; }
 
+        public int Dice1Result { get; set; }
+
+        public int Dice2Result { get; set; }
+
         public Grid GridGame { get; set; }
 
         public int CurrentPlayer { get; set; }
@@ -84,9 +88,10 @@ namespace _GameOfSquirrels
         public void DoTurn()
         {
             Dice dice = new Dice();
-            int roll = dice.RollDice(1, 7);
-            LastNumberRolled = roll;
-            MovePawn(roll);
+            Dice1Result = dice.RollDice(1, 4);
+            Dice2Result = dice.RollDice(1, 4);
+            LastNumberRolled = Dice1Result + Dice2Result;
+            MovePawn(LastNumberRolled);
             NextTurn();
         }
     }

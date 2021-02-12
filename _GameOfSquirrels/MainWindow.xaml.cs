@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 
 namespace _GameOfSquirrels
 {
@@ -16,11 +17,12 @@ namespace _GameOfSquirrels
             game.GenerateBoard();
         }
 
+
         private void TestButtonClick(object sender, RoutedEventArgs e)
         {
             lblCurrentPlayer.Content = $"Current player: {game.CurrentPlayer+1}";
             game.DoTurn();
-            lblDiceResult.Content = $"Dice result: {game.LastNumberRolled}";
+            lblDiceResult.Content = $"First Dice: {game.Dice1Result} | Second Dice: {game.Dice2Result} | Result: {game.LastNumberRolled}";
             lblCurrentRound.Content = $"Current round: {game.RoundCounter+1}";
         }
     }
