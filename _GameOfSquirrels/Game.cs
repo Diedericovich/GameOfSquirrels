@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Numerics;
 using System.Windows;
 using System.Windows.Controls;
 using _GameOfSquirrels.Tiles;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace _GameOfSquirrels
 {
@@ -24,18 +26,19 @@ namespace _GameOfSquirrels
 
         public Game(Grid gridGame)
         {
-            BoardWidth = 40;
-            BoardHeight = 4;
+            BoardWidth = 8;
+            BoardHeight = 8;
             GridGame = gridGame;
-            //GridGame.Height = BoardHeight * 25;
             CurrentPlayer = 0;
         }
 
         public void GenerateBoard()
         {
             board = new Board(GridGame, BoardHeight, BoardWidth);
-            //GridGame.ShowGridLines = true;
-            //GridGame.Background = new SolidColorBrush(Color.FromRgb(0,115,21));
+            BitmapImage img = new BitmapImage(new Uri(@"https://cdn.discordapp.com/attachments/809042663969652756/809745831732314152/TileGrass.png"));
+            ImageBrush image = new ImageBrush();
+            image.ImageSource = img;
+            GridGame.Background = image;
             GenerateTiles();
             GeneratePawns();
         }
@@ -82,19 +85,18 @@ namespace _GameOfSquirrels
                         Grid.SetColumn(Playerlist[CurrentPlayer].Ellipse, 0);
                         Playerlist[CurrentPlayer].LocationX = 0;
                     }
+                    else if (tile is NormalTile)
+                    {
+                    }
                     else
                     {
                         MovePawn(tile.GetInteraction());
                     }
-                    
                 }
             }
 
-            if (Playerlist[CurrentPlayer].LocationX >= BoardWidth-1)
+            if (Playerlist[CurrentPlayer].LocationX >= BoardWidth - 1) //end of the line
             {
-                MessageBox.Show($"Player{CurrentPlayer} Wins!");
-                //Playerlist[CurrentPlayer].LocationX = 0;
-                //Grid.SetColumn(Playerlist[CurrentPlayer].Ellipse, Playerlist[CurrentPlayer].LocationX);
             }
         }
 
@@ -113,7 +115,13 @@ namespace _GameOfSquirrels
             Dice dice = new Dice();
             int roll = dice.RollDice(1, 7);
             LastNumberRolled = roll;
-            MovePawn(roll);
+            int movesavailable = LastNumberRolled;
+
+            for (int i = 0; i < movesavailable; i++)
+            {
+                MovePawn(1);
+            }
+
             NextTurn();
         }
 

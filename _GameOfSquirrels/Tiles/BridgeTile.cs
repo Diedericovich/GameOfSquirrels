@@ -12,14 +12,7 @@ namespace _GameOfSquirrels
             : base(locationX, locationY)
         {
             TileBorder = new Border();
-
-
-            BitmapImage img = new BitmapImage(new Uri(@"https://cdn.discordapp.com/attachments/809042663969652756/809745831732314152/TileGrass.png"));
-            ImageBrush image = new ImageBrush();
-            image.ImageSource = img;
-            image.Stretch = Stretch.Fill;
-            TileBorder.Background = image;
-            TileBorder.Margin = new Thickness(1);
+            TileBorder.Background = Brushes.LightSlateGray;
         }
 
         public override int GetInteraction()

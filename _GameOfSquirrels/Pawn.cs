@@ -8,6 +8,8 @@ namespace _GameOfSquirrels
     {
         private int _locationX;
         public int LastRoll { get; set; }
+        public bool GoingUp { get; set; }
+        public bool GoingRight { get; set; }
 
         public int LocationX
         {
@@ -52,7 +54,7 @@ namespace _GameOfSquirrels
         {
             LocationX += x;
             Grid.SetColumn(Ellipse, LocationX);
-            //CheckTile(tiles);
+            Grid.SetRow(Ellipse, LocationY);
         }
     }
 }
