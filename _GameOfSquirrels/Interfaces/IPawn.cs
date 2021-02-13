@@ -10,6 +10,7 @@ namespace _GameOfSquirrels
         int LastRoll { get; set; }
         int LocationX { get; set; }
         int LocationY { get; set; }
+        public bool IsReversed { get; set; }
 
         void Move(int x, int y);
     }

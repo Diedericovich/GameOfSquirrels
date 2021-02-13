@@ -10,6 +10,7 @@ namespace _GameOfSquirrels
         public int LastRoll { get; set; }
         public bool GoingUp { get; set; }
         public bool GoingRight { get; set; }
+        public bool IsReversed { get; set; }
 
         public int LocationX
         {
@@ -36,6 +37,7 @@ namespace _GameOfSquirrels
         public Pawn(int locationX, int locationY)
         {
             GoingRight = true;
+            IsReversed = false;
             LocationX = locationX;
             LocationY = locationY;
 

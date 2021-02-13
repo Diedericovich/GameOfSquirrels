@@ -11,6 +11,13 @@ namespace _GameOfSquirrels
         {
             TileBorder = new Border();
             TileBorder.Background = Brushes.LightSlateGray;
+
+            //BitmapImage img = new BitmapImage(new Uri(@"C:\Users\jens_\Pictures\Backgrounds\TestTile.png"));
+            //ImageBrush image = new ImageBrush();
+            //image.ImageSource = img;
+            //image.Stretch = Stretch.Fill;
+            //TileBorder.Background = image;
+            //TileBorder.Margin = new Thickness(1);
         }
 
         public override int GetInteraction()
