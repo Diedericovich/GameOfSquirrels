@@ -11,7 +11,6 @@ namespace _GameOfSquirrels
         int LocationX { get; set; }
         int LocationY { get; set; }
 
-        void Move();
-        void Move(int x);
+        void Move(int x, int y);
     }
 }

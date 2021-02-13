@@ -1,4 +1,3 @@
-using _GameOfSquirrels;
 using NUnit.Framework;
 
 namespace _GameOfSquirrels.Tests

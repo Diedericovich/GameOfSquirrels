@@ -35,24 +35,17 @@ namespace _GameOfSquirrels
 
         public Pawn(int locationX, int locationY)
         {
+            GoingRight = true;
             LocationX = locationX;
             LocationY = locationY;
 
             Ellipse = new Ellipse() { Fill = Brushes.DarkRed, Height = 20, Width = 20, };
         }
 
-        public void Move()
-        {
-            Dice dice = new Dice();
-            int roll = dice.RollDice(1, 7);
-            LastRoll = roll;
-            LocationX += roll;
-            Grid.SetColumn(Ellipse, LocationX);
-        }
-
-        public void Move(int x)
+        public void Move(int x, int y)
         {
             LocationX += x;
+            LocationY += y;
             Grid.SetColumn(Ellipse, LocationX);
             Grid.SetRow(Ellipse, LocationY);
         }
