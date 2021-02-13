@@ -7,7 +7,7 @@ namespace _GameOfSquirrels
     public class SquirrelTile : Tile
     {
         public SquirrelTile(int locationX, int locationY)
-                        : base(locationX, locationY)
+            : base(locationX, locationY)
         {
             TileBorder = new Border();
             TileBorder.Background = Brushes.BlanchedAlmond;

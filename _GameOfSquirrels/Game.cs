@@ -6,23 +6,24 @@ namespace _GameOfSquirrels
 {
     public class Game
     {
-        private Dice dice = new Dice();
         private Board board;
-        public List<IPawn> Playerlist;
         public List<ITile> BoardTiles;
         public int BoardWidth;
-        public int RoundCounter { get; set; }
-        public int LastNumberRolled { get; set; }
-
-        public Grid GridGame { get; set; }
-
-        public int CurrentPlayer { get; set; }
+        private Dice dice = new Dice();
+        public List<IPawn> Playerlist;
 
         public Game(Grid gridGame)
         {
             GridGame = gridGame;
             CurrentPlayer = 0;
         }
+
+        public int RoundCounter { get; set; }
+        public int LastNumberRolled { get; set; }
+
+        public Grid GridGame { get; set; }
+
+        public int CurrentPlayer { get; set; }
 
         public void GenerateBoard()
         {
@@ -35,7 +36,7 @@ namespace _GameOfSquirrels
 
         private void GeneratePawns()
         {
-            PawnFactory pawnFactory = new PawnFactory();
+            var pawnFactory = new PawnFactory();
             Playerlist = pawnFactory.CreatePawns(4);
             foreach (var item in Playerlist)
             {
@@ -47,9 +48,9 @@ namespace _GameOfSquirrels
 
         private void GenerateTiles()
         {
-            TileFactory tileFactory = new TileFactory();
+            var tileFactory = new TileFactory();
             BoardTiles = tileFactory.CreateTiles();
-            foreach (ITile tile in BoardTiles)
+            foreach (var tile in BoardTiles)
             {
                 GridGame.Children.Add(tile.TileBorder);
                 Grid.SetColumn(tile.TileBorder, tile.LocationX);
@@ -60,8 +61,7 @@ namespace _GameOfSquirrels
         public void MovePawn(int move)
         {
             Playerlist[CurrentPlayer].Move(move);
-            foreach (ITile tile in BoardTiles)
-            {
+            foreach (var tile in BoardTiles)
                 if (Playerlist[CurrentPlayer].LocationX == tile.LocationX)
                 {
                     if (tile is SquirrelTile)
@@ -80,14 +80,11 @@ namespace _GameOfSquirrels
                         MovePawn(tile.GetInteraction());
                     }
                 }
-            }
 
             if (Playerlist[CurrentPlayer].LocationX >= BoardWidth - 1)
-            {
                 MessageBox.Show($"Player{CurrentPlayer} Wins!");
-                //Playerlist[CurrentPlayer].LocationX = 0;
-                //Grid.SetColumn(Playerlist[CurrentPlayer].Ellipse, Playerlist[CurrentPlayer].LocationX);
-            }
+            //Playerlist[CurrentPlayer].LocationX = 0;
+            //Grid.SetColumn(Playerlist[CurrentPlayer].Ellipse, Playerlist[CurrentPlayer].LocationX);
         }
 
         private void NextTurn()
@@ -102,8 +99,8 @@ namespace _GameOfSquirrels
 
         public void DoTurn()
         {
-            Dice dice = new Dice();
-            int roll = dice.RollDice(1, 7);
+            var dice = new Dice();
+            var roll = dice.RollDice(1, 7);
             LastNumberRolled = roll;
             MovePawn(roll);
             NextTurn();

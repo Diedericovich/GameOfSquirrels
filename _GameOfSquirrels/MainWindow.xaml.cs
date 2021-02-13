@@ -3,7 +3,7 @@
 namespace _GameOfSquirrels
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    ///     Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -18,10 +18,10 @@ namespace _GameOfSquirrels
 
         private void TestButtonClick(object sender, RoutedEventArgs e)
         {
-            lblCurrentPlayer.Content = $"Current player: {game.CurrentPlayer+1}";
+            lblCurrentPlayer.Content = $"Current player: {game.CurrentPlayer + 1}";
             game.DoTurn();
             lblDiceResult.Content = $"Dice result: {game.LastNumberRolled}";
-            lblCurrentRound.Content = $"Current round: {game.RoundCounter+1}";
+            lblCurrentRound.Content = $"Current round: {game.RoundCounter + 1}";
         }
     }
 }

@@ -6,9 +6,9 @@ namespace _GameOfSquirrels
     {
         public List<ITile> CreateTiles()
         {
-            List<ITile> tiles = new List<ITile>();
+            var tiles = new List<ITile>();
 
-            for (int i = 0; i < 4; i++)
+            for (var i = 0; i < 4; i++)
             {
                 tiles.Add(new SquirrelTile(3, i));
                 tiles.Add(new CatapultTile(4, i));
