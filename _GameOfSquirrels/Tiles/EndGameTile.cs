@@ -1,6 +1,8 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace _GameOfSquirrels
 {
@@ -11,6 +13,13 @@ namespace _GameOfSquirrels
         {
             TileBorder = new Border();
             TileBorder.Background = Brushes.LawnGreen;
+
+            BitmapImage img = new BitmapImage(new Uri(@"http://www.pngall.com/wp-content/uploads/5/Nuts-PNG-Pic.png"));
+            ImageBrush image = new ImageBrush();
+            image.ImageSource = img;
+            image.Stretch = Stretch.Fill;
+            TileBorder.Background = image;
+            TileBorder.Margin = new Thickness(1);
         }
 
         public override int GetInteraction()

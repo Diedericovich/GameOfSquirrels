@@ -1,5 +1,7 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace _GameOfSquirrels
@@ -41,7 +43,17 @@ namespace _GameOfSquirrels
             LocationX = locationX;
             LocationY = locationY;
 
-            Ellipse = new Ellipse() { Fill = Brushes.DarkRed, Height = 20, Width = 20, };
+            //Ellipse = new Ellipse() { Fill = Brushes.DarkRed, Height = 50, Width = 50, };
+            Ellipse = new Ellipse() {};
+
+
+            BitmapImage img = new BitmapImage(new Uri(@"https://pngimg.com/uploads/squirrel/squirrel_PNG15804.png"));
+            ImageBrush image = new ImageBrush();
+            image.ImageSource = img;
+            image.Stretch = Stretch.Fill;
+            Ellipse.Fill = image;
+            //TileBorder.Background = image;
+            //TileBorder.Margin = new Thickness(1);
         }
 
         public void Move(int x, int y)

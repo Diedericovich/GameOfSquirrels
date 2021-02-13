@@ -28,13 +28,14 @@ namespace _GameOfSquirrels
             BoardWidth = 8;
             BoardHeight = 8;
             GridGame = gridGame;
+            //GridGame.ShowGridLines = true;
             CurrentPlayer = 0;
         }
 
         public void GenerateBoard()
         {
             board = new Board(GridGame, BoardHeight, BoardWidth);
-            BitmapImage img = new BitmapImage(new Uri(@"https://cdn.discordapp.com/attachments/809042663969652756/809745831732314152/TileGrass.png"));
+            BitmapImage img = new BitmapImage(new Uri(@"https://cdn.discordapp.com/attachments/809042663969652756/810215205018927104/Squirrelgame_source.png"));
             ImageBrush image = new ImageBrush();
             image.ImageSource = img;
             GridGame.Background = image;
@@ -45,7 +46,7 @@ namespace _GameOfSquirrels
         private void GeneratePawns()
         {
             PawnFactory pawnFactory = new PawnFactory();
-            Playerlist = pawnFactory.CreatePawns(1);
+            Playerlist = pawnFactory.CreatePawns(2);
             foreach (var item in Playerlist)
             {
                 GridGame.Children.Add(item.Ellipse);
@@ -85,6 +86,7 @@ namespace _GameOfSquirrels
         {
             for (int i = 1; i < roll + 1; i++)
             {
+                await Task.Delay(300);
                 if (i == roll)
                 {
                     PlayerFinishedMoving = true;
@@ -96,7 +98,7 @@ namespace _GameOfSquirrels
                 {
                     CheckForSpecialTile();
                 }
-                await Task.Delay(300);
+                
             }
         }
 
