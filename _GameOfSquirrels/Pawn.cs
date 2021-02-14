@@ -70,8 +70,8 @@ namespace _GameOfSquirrels
         {
             LocationX += x;
             LocationY += y;
-            //Grid.SetColumn(Ellipse, LocationX);
-            //Grid.SetRow(Ellipse, LocationY);
+            Grid.SetColumn(Ellipse, LocationX);
+            Grid.SetRow(Ellipse, LocationY);
         }
     }
 }

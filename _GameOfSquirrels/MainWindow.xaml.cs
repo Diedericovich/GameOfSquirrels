@@ -33,7 +33,7 @@ namespace _GameOfSquirrels
             game.DoTurn();
             lblDiceResult.Content = $"Dice result: {game.LastNumberRolled}";
             lblCurrentRound.Content = $"Current round: {game.RoundCounter + 1}";
-            game.UpdatePawnLocation();
+            //game.UpdatePawnLocation();
         }
 
 

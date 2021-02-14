@@ -68,14 +68,14 @@ namespace _GameOfSquirrels
             }
         }
 
-        public void UpdatePawnLocation()
-        {
-            foreach (var item in Playerlist)
-            {
-                Grid.SetColumn(item.Ellipse, item.LocationX);
-                Grid.SetRow(item.Ellipse, item.LocationY);
-            }
-        }
+        //public void UpdatePawnLocation()
+        //{
+        //    foreach (var item in Playerlist)
+        //    {
+        //        Grid.SetColumn(item.Ellipse, item.LocationX);
+        //        Grid.SetRow(item.Ellipse, item.LocationY);
+        //    }
+        //}
 
         public void DoTurn()
         {
@@ -110,7 +110,7 @@ namespace _GameOfSquirrels
         {
             for (int i = 1; i < roll + 1; i++)
             {
-                //await Task.Delay(300);
+                await Task.Delay(300);
                 if (i == roll)
                 {
                     PlayerFinishedMoving = true;
@@ -207,7 +207,7 @@ namespace _GameOfSquirrels
 
         private void InteractWithEndGame()
         {
-            Playerlist.RemoveAt(CurrentPlayer);
+            
             EndGame();
         }
 
