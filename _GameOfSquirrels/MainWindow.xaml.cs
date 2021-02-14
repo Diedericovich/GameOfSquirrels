@@ -19,7 +19,6 @@ namespace _GameOfSquirrels
             game = new Game(GridGame);
             game.GenerateBoard();
 
-
             BitmapImage img = new BitmapImage(new Uri(@"https://cdn.discordapp.com/attachments/809042663969652756/810496364077252638/Overlay_test.png"));
             ImageBrush image = new ImageBrush();
             image.ImageSource = img;
@@ -35,7 +34,5 @@ namespace _GameOfSquirrels
             lblCurrentRound.Content = $"Current round: {game.RoundCounter + 1}";
             //game.UpdatePawnLocation();
         }
-
-
     }
 }

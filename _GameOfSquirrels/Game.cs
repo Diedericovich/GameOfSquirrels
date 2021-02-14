@@ -106,7 +106,7 @@ namespace _GameOfSquirrels
             NextTurn();
         }
 
-        public async void MovePawn(int roll)
+        private async void MovePawn(int roll)
         {
             for (int i = 1; i < roll + 1; i++)
             {
@@ -170,6 +170,7 @@ namespace _GameOfSquirrels
                         case BeartrapTile:
                             InteractWithBeartrap();
                             break;
+
                         case TunnelTile:
                             InteractWithTunnel();
                             break;
@@ -188,8 +189,8 @@ namespace _GameOfSquirrels
 
         private void InteractWithBeartrap()
         {
-            Playerlist[CurrentPlayer ].TurnsToSkip = 3;
-            Playerlist[CurrentPlayer ].IsSkippingNextTurn = true;
+            Playerlist[CurrentPlayer].TurnsToSkip = 3;
+            Playerlist[CurrentPlayer].IsSkippingNextTurn = true;
         }
 
         private void InteractWithTeleport()
@@ -207,7 +208,6 @@ namespace _GameOfSquirrels
 
         private void InteractWithEndGame()
         {
-            
             EndGame();
         }
 

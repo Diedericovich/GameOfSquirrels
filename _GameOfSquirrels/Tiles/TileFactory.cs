@@ -11,7 +11,6 @@ namespace _GameOfSquirrels
 
             //for (int i = 0; i < boardHeight; i++)
             //{
-
             //    for (int j = 0; j < boardWidth; j++)
             //    {
             //        tiles.Add(new NormalTile(i, j));

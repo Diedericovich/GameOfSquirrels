@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -11,13 +10,12 @@ namespace _GameOfSquirrels
         public NormalTile(int locationX, int locationY)
             : base(locationX, locationY)
         {
-           
             BitmapImage img = new BitmapImage(new Uri(@"https://cdn.discordapp.com/attachments/809042663969652756/810162850668216330/stonepath.png"));
             ImageBrush image = new ImageBrush();
             image.ImageSource = img;
             image.Stretch = Stretch.Fill;
             TileBorder.Background = image;
-            TileBorder.Margin = new Thickness(-1,10,-1,10);
+            TileBorder.Margin = new Thickness(-1, 10, -1, 10);
 
             if (locationX == 0 && locationY == 1 || locationX == 0 && locationY == 3 || locationX == 0 && locationY == 5)
             {
@@ -35,7 +33,6 @@ namespace _GameOfSquirrels
             {
                 TileBorder.Margin = new Thickness(0, 0, 0, 10);
             }
-
         }
 
         public int GetInteraction()

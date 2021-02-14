@@ -49,7 +49,7 @@ namespace _GameOfSquirrels
             SetSize();
         }
 
-        public void SetSize()
+        private void SetSize()
         {
             for (int i = 0; i < MaxBoardWidth; i++)
             {

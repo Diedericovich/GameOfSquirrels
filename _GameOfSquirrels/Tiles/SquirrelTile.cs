@@ -1,8 +1,4 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
+﻿using System.Windows;
 
 namespace _GameOfSquirrels
 {
@@ -11,7 +7,6 @@ namespace _GameOfSquirrels
         public SquirrelTile(int locationX, int locationY)
                         : base(locationX, locationY)
         {
-            
             //TileBorder.Background = Brushes.BlanchedAlmond;
             //BitmapImage img = new BitmapImage(new Uri(@"C:\Users\jens_\Pictures\Backgrounds\kisspng-scratte-bear-squirrel-drawing-scrat-by-miserysteaparty-on-deviantart-5c5ad24d1dcd87.2096942815494559491221.png"));
             //ImageBrush image = new ImageBrush();

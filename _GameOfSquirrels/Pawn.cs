@@ -30,7 +30,7 @@ namespace _GameOfSquirrels
             set
             {
                 _locationY = value;
-                if (_locationY>7)
+                if (_locationY > 7)
                 {
                     _locationY = 6;
                 }

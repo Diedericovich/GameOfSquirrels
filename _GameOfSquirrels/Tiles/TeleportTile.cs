@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using System.Windows.Controls;
 
 namespace _GameOfSquirrels
 {
@@ -8,7 +7,6 @@ namespace _GameOfSquirrels
         public TeleportTile(int locationX, int locationY)
             : base(locationX, locationY)
         {
-            
         }
 
         public override int GetInteraction()

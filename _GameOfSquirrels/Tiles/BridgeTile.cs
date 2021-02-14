@@ -1,8 +1,4 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
+﻿using System.Windows;
 
 namespace _GameOfSquirrels
 {
@@ -11,7 +7,6 @@ namespace _GameOfSquirrels
         public BridgeTile(int locationX, int locationY)
             : base(locationX, locationY)
         {
-            
             //TileBorder.Background = Brushes.LightSlateGray;
 
             //BitmapImage img = new BitmapImage(new Uri(@"http://www.pngall.com/wp-content/uploads/2/Bridge-PNG-Picture.png"));

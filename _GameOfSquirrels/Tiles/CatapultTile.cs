@@ -1,8 +1,4 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
+﻿using System.Windows;
 
 namespace _GameOfSquirrels
 {
@@ -11,7 +7,6 @@ namespace _GameOfSquirrels
         public CatapultTile(int locationX, int locationY)
             : base(locationX, locationY)
         {
-            
             //TileBorder.Background = Brushes.IndianRed;
 
             //BitmapImage img = new BitmapImage(new Uri(@"C:\Users\jens_\Pictures\Backgrounds\pngkit_cannon-png_1515093.png"));
