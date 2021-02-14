@@ -19,7 +19,18 @@ namespace _GameOfSquirrels
         public int LocationX
         {
             get { return _locationX; }
-            set { _locationX = value; }
+            set
+            {
+                _locationX = value;
+                if (_locationX > 7)
+                {
+                    _locationX = 6;
+                }
+                if (_locationX < 0)
+                {
+                    _locationX = 0;
+                }
+            }
         }
 
         private int _locationY;
@@ -33,6 +44,10 @@ namespace _GameOfSquirrels
                 if (_locationY > 7)
                 {
                     _locationY = 6;
+                }
+                if (_locationY < 0)
+                {
+                    _locationY = 0;
                 }
             }
         }

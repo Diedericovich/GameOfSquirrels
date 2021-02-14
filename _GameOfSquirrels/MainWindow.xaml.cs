@@ -18,6 +18,7 @@ namespace _GameOfSquirrels
             //this.Background = new SolidColorBrush(Color.FromRgb(0, 115, 21));
             game = new Game(GridGame);
             game.GenerateBoard();
+            lblDiceResult.DataContext = game;
 
             BitmapImage img = new BitmapImage(new Uri(@"https://cdn.discordapp.com/attachments/809042663969652756/810496364077252638/Overlay_test.png"));
             ImageBrush image = new ImageBrush();
@@ -30,7 +31,6 @@ namespace _GameOfSquirrels
         {
             lblCurrentPlayer.Content = $"Current player: {game.CurrentPlayer + 1}";
             game.DoTurn();
-            lblDiceResult.Content = $"Dice result: {game.LastNumberRolled}";
             lblCurrentRound.Content = $"Current round: {game.RoundCounter + 1}";
             //game.UpdatePawnLocation();
         }

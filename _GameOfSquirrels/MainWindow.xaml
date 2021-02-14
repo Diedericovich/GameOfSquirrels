@@ -43,13 +43,17 @@
         <Label x:Name="lblDiceResult"
                Grid.Row="1"
                Grid.Column="3"
-               HorizontalAlignment="Left" />
+               Content="{Binding LastNumberRolled, StringFormat='Number rolled: {0}'}"
+               HorizontalAlignment="Left">
+        </Label>
         <Label x:Name="lblCurrentRound"
                Grid.Column="1"
-               HorizontalAlignment="Center" />
+               HorizontalAlignment="Center"
+               Content="{Binding RoundCounter, StringFormat='Current round: {0}'}" />
         <Label x:Name="lblCurrentPlayer"
                Grid.Row="1"
                Grid.Column="3"
-               HorizontalAlignment="Right" />
+               HorizontalAlignment="Right"
+               Content="{Binding CurrentPlayer, StringFormat='Current player: {0}'}" />
     </Grid>
 </Window>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -8,8 +9,10 @@ using System.Windows.Media.Imaging;
 
 namespace _GameOfSquirrels
 {
-    public class Game
+    public class Game : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         private Dice dice = new Dice();
         private Board board;
         public List<IPawn> Playerlist;
@@ -17,12 +20,35 @@ namespace _GameOfSquirrels
         public int BoardWidth;
         public int BoardHeight;
         public bool PlayerFinishedMoving;
-        public int RoundCounter { get; set; }
-        public int LastNumberRolled { get; set; }
+        private int _roundCounter;
+
+        public int RoundCounter
+        {
+            get { return _roundCounter; }
+            set { _roundCounter = value; OnPropertyChanged("RoundCounter"); }
+        }
+
+        private int _lastNumberRolled;
+
+        public int LastNumberRolled
+        {
+            get { return _lastNumberRolled; }
+            set
+            {
+                _lastNumberRolled = value;
+                OnPropertyChanged("LastNumberRolled");
+            }
+        }
 
         public Grid GridGame { get; set; }
 
-        public int CurrentPlayer { get; set; }
+        private int _currentPlayer;
+
+        public int CurrentPlayer
+        {
+            get { return _currentPlayer; }
+            set { _currentPlayer = value; OnPropertyChanged("CurrentPlayer"); }
+        }
 
         public Game(Grid gridGame)
         {
@@ -79,18 +105,17 @@ namespace _GameOfSquirrels
 
         public void DoTurn()
         {
+            Playerlist[CurrentPlayer].IsReversed = false;
+            CheckPlayerDirection();
             PlayerFinishedMoving = false;
-            if (Playerlist[CurrentPlayer].IsReversed)
-            {
-                Playerlist[CurrentPlayer].GoingRight = false;
-                Playerlist[CurrentPlayer].IsReversed = false;
-            }
+
             if (!Playerlist[CurrentPlayer].IsSkippingNextTurn)
             {
                 Dice dice = new Dice();
                 int roll = dice.RollDice(1, 7);
-                LastNumberRolled = roll;
-                MovePawn(roll);
+                int roll2 = dice.RollDice(1, 7);
+                LastNumberRolled = roll + roll2;
+                MovePawn(LastNumberRolled);
             }
             else
             {
@@ -196,14 +221,7 @@ namespace _GameOfSquirrels
         private void InteractWithTeleport()
         {
             Playerlist[CurrentPlayer].Move(dice.RollDice(0, 8), dice.RollDice(0, 8));
-            if (Playerlist[CurrentPlayer].LocationY % 2 == 0)
-            {
-                Playerlist[CurrentPlayer].GoingRight = true;
-            }
-            else
-            {
-                Playerlist[CurrentPlayer].GoingRight = false;
-            }
+            CheckPlayerDirection();
         }
 
         private void InteractWithEndGame()
@@ -246,39 +264,66 @@ namespace _GameOfSquirrels
 
         private void MoveOnBoard()
         {
-            if (Playerlist[CurrentPlayer].LocationX == BoardWidth - 1 && Playerlist[CurrentPlayer].GoingRight)
+            if (Playerlist[CurrentPlayer].LocationX == BoardWidth - 1 && Playerlist[CurrentPlayer].IsReversed && Playerlist[CurrentPlayer].GoingRight) // Right turn reverse
+            {
+                Playerlist[CurrentPlayer].Move(0, -1);
+                Playerlist[CurrentPlayer].GoingRight = false;
+            }
+            else if (Playerlist[CurrentPlayer].LocationX == 0 && Playerlist[CurrentPlayer].IsReversed && !Playerlist[CurrentPlayer].GoingRight) // Left turn reverse
+            {
+                Playerlist[CurrentPlayer].Move(0, -1);
+                Playerlist[CurrentPlayer].GoingRight = true;
+            }
+            else if (Playerlist[CurrentPlayer].LocationX == BoardWidth - 1 && Playerlist[CurrentPlayer].GoingRight) // Right turn
             {
                 Playerlist[CurrentPlayer].Move(0, 1);
                 Playerlist[CurrentPlayer].GoingRight = false;
             }
-            else if (Playerlist[CurrentPlayer].LocationX == 0 && Playerlist[CurrentPlayer].LocationY == 0)
+            else if (Playerlist[CurrentPlayer].LocationX == 0 && Playerlist[CurrentPlayer].LocationY == 0) //If at startµ
             {
                 Playerlist[CurrentPlayer].GoingRight = true;
                 Playerlist[CurrentPlayer].Move(1, 0);
             }
-            else if (Playerlist[CurrentPlayer].LocationX == 0 && Playerlist[CurrentPlayer].LocationY == BoardHeight - 1)
+            else if (Playerlist[CurrentPlayer].LocationX == 0 && Playerlist[CurrentPlayer].LocationY == BoardHeight - 1)  //Go past the end
             {
                 Playerlist[CurrentPlayer].Move(1, 0);
                 Playerlist[CurrentPlayer].GoingRight = true;
                 Playerlist[CurrentPlayer].IsReversed = true;
             }
-            else if (Playerlist[CurrentPlayer].LocationX == 0 && !Playerlist[CurrentPlayer].GoingRight)
+            else if (Playerlist[CurrentPlayer].LocationX == 0 && !Playerlist[CurrentPlayer].GoingRight) // Left boardside turn
             {
                 Playerlist[CurrentPlayer].Move(0, 1);
                 Playerlist[CurrentPlayer].GoingRight = true;
             }
-            else if (Playerlist[CurrentPlayer].GoingRight)
+            else if (Playerlist[CurrentPlayer].GoingRight) // Move right
             {
                 Playerlist[CurrentPlayer].Move(1, 0);
             }
-            else
+            else // Move left
             {
                 Playerlist[CurrentPlayer].Move(-1, 0);
             }
         }
 
+        public void CheckPlayerDirection()
+        {
+            if (Playerlist[CurrentPlayer].LocationY % 2 == 0)
+            {
+                Playerlist[CurrentPlayer].GoingRight = true;
+            }
+            else
+            {
+                Playerlist[CurrentPlayer].GoingRight = false;
+            }
+        }
+
         private void EndGame()
         {
+        }
+
+        protected void OnPropertyChanged(string name = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
 }
