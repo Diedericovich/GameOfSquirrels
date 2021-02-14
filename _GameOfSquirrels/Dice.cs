@@ -2,7 +2,7 @@
 
 namespace _GameOfSquirrels
 {
-    internal class Dice
+    public class Dice
     {
         private Random dice = new Random();
 

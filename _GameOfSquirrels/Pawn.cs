@@ -1,5 +1,7 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace _GameOfSquirrels
@@ -8,6 +10,9 @@ namespace _GameOfSquirrels
     {
         private int _locationX;
         public int LastRoll { get; set; }
+        public bool GoingUp { get; set; }
+        public bool GoingRight { get; set; }
+        public bool IsReversed { get; set; }
 
         public int LocationX
         {
@@ -33,26 +38,30 @@ namespace _GameOfSquirrels
 
         public Pawn(int locationX, int locationY)
         {
+            GoingRight = true;
+            IsReversed = false;
             LocationX = locationX;
             LocationY = locationY;
 
-            Ellipse = new Ellipse() { Fill = Brushes.DarkRed, Height = 20, Width = 20, };
+            //Ellipse = new Ellipse() { Fill = Brushes.DarkRed, Height = 50, Width = 50, };
+            Ellipse = new Ellipse() {};
+
+
+            BitmapImage img = new BitmapImage(new Uri(@"https://pngimg.com/uploads/squirrel/squirrel_PNG15804.png"));
+            ImageBrush image = new ImageBrush();
+            image.ImageSource = img;
+            image.Stretch = Stretch.Fill;
+            Ellipse.Fill = image;
+            //TileBorder.Background = image;
+            //TileBorder.Margin = new Thickness(1);
         }
 
-        public void Move()
-        {
-            Dice dice = new Dice();
-            int roll = dice.RollDice(1, 7);
-            LastRoll = roll;
-            LocationX += roll;
-            Grid.SetColumn(Ellipse, LocationX);
-        }
-
-        public void Move(int x)
+        public void Move(int x, int y)
         {
             LocationX += x;
+            LocationY += y;
             Grid.SetColumn(Ellipse, LocationX);
-            //CheckTile(tiles);
+            Grid.SetRow(Ellipse, LocationY);
         }
     }
 }

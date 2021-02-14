@@ -6,15 +6,15 @@ using System.Windows.Media.Imaging;
 
 namespace _GameOfSquirrels
 {
-    public class CatapultTile : Tile
+    internal class EndGameTile : Tile
     {
-        public CatapultTile(int locationX, int locationY)
-            : base(locationX, locationY)
+        public EndGameTile(int locationX, int locationY)
+        : base(locationX, locationY)
         {
             TileBorder = new Border();
-            //TileBorder.Background = Brushes.IndianRed;
+            TileBorder.Background = Brushes.LawnGreen;
 
-            BitmapImage img = new BitmapImage(new Uri(@"C:\Users\jens_\Pictures\Backgrounds\pngkit_cannon-png_1515093.png"));
+            BitmapImage img = new BitmapImage(new Uri(@"http://www.pngall.com/wp-content/uploads/5/Nuts-PNG-Pic.png"));
             ImageBrush image = new ImageBrush();
             image.ImageSource = img;
             image.Stretch = Stretch.Fill;
@@ -24,8 +24,8 @@ namespace _GameOfSquirrels
 
         public override int GetInteraction()
         {
-            MessageBox.Show("Catapult! You will get thrown back three squares!");
-            return -3;
+            MessageBox.Show("You win!");
+            return 0;
         }
     }
 }

@@ -6,7 +6,6 @@ namespace _GameOfSquirrels
     internal class Board
     {
         public List<IPawn> PlayerList;
-
         public List<ITile> TileList;
         public Grid BoardGrid;
 
@@ -55,11 +54,13 @@ namespace _GameOfSquirrels
             for (int i = 0; i < MaxBoardWidth; i++)
             {
                 BoardGrid.ColumnDefinitions.Add(new ColumnDefinition());
+                //BoardGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(MaxBoardWidth) });
             }
 
             for (int i = 0; i < MaxBoardHeight; i++)
             {
                 BoardGrid.RowDefinitions.Add(new RowDefinition());
+                //BoardGrid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(MaxBoardWidth) });
             }
         }
     }

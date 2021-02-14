@@ -4,50 +4,45 @@ namespace _GameOfSquirrels
 {
     internal class TileFactory
     {
-        public List<ITile> CreateTiles()
+        public List<ITile> CreateTiles(int boardHeight, int boardWidth)
         {
             List<ITile> tiles = new List<ITile>();
+            //int counter = 0;
 
-            for (int i = 0; i < 4; i++)
-            {
-                tiles.Add(new SquirrelTile(3, i));
-                tiles.Add(new CatapultTile(4, i));
-                tiles.Add(new BridgeTile(5, i));
-                tiles.Add(new BridgeTile(6, i));
-                tiles.Add(new CatapultTile(8, i));
-                tiles.Add(new FireTile(10, i));
-                tiles.Add(new SquirrelTile(12, i));
-                tiles.Add(new FireTile(13, i));
-                tiles.Add(new BridgeTile(15, i));
-                tiles.Add(new BridgeTile(20, i));
-                tiles.Add(new BridgeTile(21, i));
-                tiles.Add(new CatapultTile(25, i));
-                tiles.Add(new FireTile(26, i));
-                tiles.Add(new SquirrelTile(28, i));
-                tiles.Add(new FireTile(36, i));
-                tiles.Add(new BridgeTile(37, i));
-                //tiles.Add(new CatapultTile(17, i));
-                //tiles.Add(new BridgeTile(3, i));
-                //tiles.Add(new BridgeTile(5, i));
-                //tiles.Add(new BridgeTile(7, i));
-                //tiles.Add(new BridgeTile(9, i));
-                //tiles.Add(new BridgeTile(11, i));
-                //tiles.Add(new BridgeTile(13, i));
-                //tiles.Add(new BridgeTile(5, i));
-            }
+            //for (int i = 0; i < boardHeight; i++)
+            //{
 
-            //int counter = 2;
-            //int counter1 = 0;
-            //for (int i = 0; i < 4; i++)
-            //{
-            //    counter += 3;
-            //    tiles.Add(new CatapultTile(counter, 0));
+            //    for (int j = 0; j < boardWidth; j++)
+            //    {
+            //        tiles.Add(new NormalTile(i, j));
+            //    }
             //}
-            //for (int i = 0; i < 2; i++)
-            //{
-            //    counter1 += 2;
-            //    tiles.Add(new BridgeTile(counter1, 0));
-            //}
+
+            tiles.Add(new BridgeTile(1, 0));
+            tiles.Add(new SquirrelTile(2, 0));
+            tiles.Add(new CatapultTile(5, 0));
+            tiles.Add(new SquirrelTile(6, 1));
+
+            tiles.Add(new SquirrelTile(2, 2));
+            tiles.Add(new SquirrelTile(5, 2));
+            tiles.Add(new CatapultTile(6, 2));
+
+            tiles.Add(new FireTile(0, 3));
+            tiles.Add(new SquirrelTile(1, 3));
+            tiles.Add(new SquirrelTile(4, 3));
+
+            tiles.Add(new CatapultTile(2, 4));
+            tiles.Add(new SquirrelTile(5, 4));
+
+            tiles.Add(new SquirrelTile(1, 5));
+            tiles.Add(new BridgeTile(6, 5));
+
+            tiles.Add(new BridgeTile(4, 6));
+
+            tiles.Add(new EndGameTile(0, 7));
+            tiles.Add(new CatapultTile(2, 7));
+            tiles.Add(new FireTile(5, 7));
+            tiles.Add(new SquirrelTile(7, 7));
 
             return tiles;
         }
