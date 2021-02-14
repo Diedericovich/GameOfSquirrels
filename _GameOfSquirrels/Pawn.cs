@@ -13,6 +13,8 @@ namespace _GameOfSquirrels
         public bool GoingUp { get; set; }
         public bool GoingRight { get; set; }
         public bool IsReversed { get; set; }
+        public bool IsSkippingNextTurn { get; set; }
+        public int TurnsToSkip { get; set; }
 
         public int LocationX
         {
@@ -25,7 +27,14 @@ namespace _GameOfSquirrels
         public int LocationY
         {
             get { return _locationY; }
-            set { _locationY = value; }
+            set
+            {
+                _locationY = value;
+                if (_locationY>7)
+                {
+                    _locationY = 6;
+                }
+            }
         }
 
         private Ellipse _ellipse;
@@ -40,12 +49,13 @@ namespace _GameOfSquirrels
         {
             GoingRight = true;
             IsReversed = false;
+            IsSkippingNextTurn = false;
+            TurnsToSkip = 0;
             LocationX = locationX;
             LocationY = locationY;
 
-            //Ellipse = new Ellipse() { Fill = Brushes.DarkRed, Height = 50, Width = 50, };
-            Ellipse = new Ellipse() {};
-
+            Ellipse = new Ellipse() { Height = 50, Width = 50, Margin = new System.Windows.Thickness(0, 0, 0, 15) };
+            //Ellipse = new Ellipse() { };
 
             BitmapImage img = new BitmapImage(new Uri(@"https://pngimg.com/uploads/squirrel/squirrel_PNG15804.png"));
             ImageBrush image = new ImageBrush();
@@ -60,8 +70,8 @@ namespace _GameOfSquirrels
         {
             LocationX += x;
             LocationY += y;
-            Grid.SetColumn(Ellipse, LocationX);
-            Grid.SetRow(Ellipse, LocationY);
+            //Grid.SetColumn(Ellipse, LocationX);
+            //Grid.SetRow(Ellipse, LocationY);
         }
     }
 }

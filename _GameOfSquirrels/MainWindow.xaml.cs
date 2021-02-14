@@ -20,11 +20,11 @@ namespace _GameOfSquirrels
             game.GenerateBoard();
 
 
-            //BitmapImage img = new BitmapImage(new Uri(@"https://cdn.discordapp.com/attachments/789523256545640448/810185520558374952/Overlaytest.png"));
-            //ImageBrush image = new ImageBrush();
-            //image.ImageSource = img;
-            //image.Stretch = Stretch.Fill;
-            //Overlay.Background = image;
+            BitmapImage img = new BitmapImage(new Uri(@"https://cdn.discordapp.com/attachments/809042663969652756/810496364077252638/Overlay_test.png"));
+            ImageBrush image = new ImageBrush();
+            image.ImageSource = img;
+            image.Stretch = Stretch.Fill;
+            Overlay.Background = image;
         }
 
         private void TestButtonClick(object sender, RoutedEventArgs e)
@@ -33,6 +33,9 @@ namespace _GameOfSquirrels
             game.DoTurn();
             lblDiceResult.Content = $"Dice result: {game.LastNumberRolled}";
             lblCurrentRound.Content = $"Current round: {game.RoundCounter + 1}";
+            game.UpdatePawnLocation();
         }
+
+
     }
 }

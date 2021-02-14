@@ -12,14 +12,14 @@ namespace _GameOfSquirrels
         : base(locationX, locationY)
         {
             TileBorder = new Border();
-            TileBorder.Background = Brushes.LawnGreen;
+            //TileBorder.Background = Brushes.LawnGreen;
 
-            BitmapImage img = new BitmapImage(new Uri(@"http://www.pngall.com/wp-content/uploads/5/Nuts-PNG-Pic.png"));
-            ImageBrush image = new ImageBrush();
-            image.ImageSource = img;
-            image.Stretch = Stretch.Fill;
-            TileBorder.Background = image;
-            TileBorder.Margin = new Thickness(1);
+            //BitmapImage img = new BitmapImage(new Uri(@"http://www.pngall.com/wp-content/uploads/5/Nuts-PNG-Pic.png"));
+            //ImageBrush image = new ImageBrush();
+            //image.ImageSource = img;
+            //image.Stretch = Stretch.Fill;
+            //TileBorder.Background = image;
+            //TileBorder.Margin = new Thickness(1);
         }
 
         public override int GetInteraction()

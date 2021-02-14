@@ -26,6 +26,7 @@ namespace _GameOfSquirrels
         {
             LocationX = locationX;
             LocationY = locationY;
+            TileBorder = new Border();
         }
 
         public virtual int GetInteraction()

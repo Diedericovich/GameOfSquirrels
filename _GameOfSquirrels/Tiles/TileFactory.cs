@@ -18,9 +18,13 @@ namespace _GameOfSquirrels
             //    }
             //}
 
+            tiles.Add(new BeartrapTile(4, 0));
+            //tiles.Add(new TeleportTile(1, 0));
             tiles.Add(new BridgeTile(1, 0));
             tiles.Add(new SquirrelTile(2, 0));
             tiles.Add(new CatapultTile(5, 0));
+
+            tiles.Add(new TunnelTile(4, 1));
             tiles.Add(new SquirrelTile(6, 1));
 
             tiles.Add(new SquirrelTile(2, 2));

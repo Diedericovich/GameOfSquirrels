@@ -7,10 +7,12 @@ namespace _GameOfSquirrels
         Ellipse Ellipse { get; set; }
         bool GoingRight { get; set; }
         bool GoingUp { get; set; }
+        bool IsReversed { get; set; }
+        bool IsSkippingNextTurn { get; set; }
         int LastRoll { get; set; }
         int LocationX { get; set; }
         int LocationY { get; set; }
-        public bool IsReversed { get; set; }
+        int TurnsToSkip { get; set; }
 
         void Move(int x, int y);
     }

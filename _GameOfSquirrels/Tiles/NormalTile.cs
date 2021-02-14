@@ -11,7 +11,7 @@ namespace _GameOfSquirrels
         public NormalTile(int locationX, int locationY)
             : base(locationX, locationY)
         {
-            TileBorder = new Border();
+           
             BitmapImage img = new BitmapImage(new Uri(@"https://cdn.discordapp.com/attachments/809042663969652756/810162850668216330/stonepath.png"));
             ImageBrush image = new ImageBrush();
             image.ImageSource = img;
