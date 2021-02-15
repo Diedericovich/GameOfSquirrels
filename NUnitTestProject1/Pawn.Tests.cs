@@ -1,39 +1,43 @@
 ﻿using _GameOfSquirrels;
+
 using NUnit.Framework;
 
 namespace GameOfSquirrel.Testing
 {
-    [TestFixture()]
-    public class PawnTests
+    namespace GameOfSquirrel.Testing
     {
-        public IPawn pawn;
-
-        [SetUp]
-        public void SetUp()
+        [TestFixture()]
+        public class PawnTests
         {
-            pawn = new Pawn(0, 0);
-        }
+            public IPawn Pawn;
 
-        [TestCase(3, 3)]
-        public void Move_WhenCalled_IsCorrect(int move, int expectedLocationX)
-        {
-            pawn.Move(move, 0);
-            Assert.AreEqual(pawn.LocationX, expectedLocationX);
-        }
+            [SetUp]
+            public void SetUp()
+            {
+                Pawn = new Pawn(0, 0);
+            }
 
-        [Test()]
-        public void GenerateBoardTest()
-        {
-        }
+            [TestCase(3, 3)]
+            public void Move_WhenCalled_IsCorrect(int move, int expectedLocationX)
+            {
+                Pawn.Move(move, 0);
+                Assert.AreEqual(Pawn.LocationX, expectedLocationX);
+            }
 
-        [Test()]
-        public void MovePawnTest()
-        {
-        }
+            [Test()]
+            public void GenerateBoardTest()
+            {
+            }
 
-        [Test()]
-        public void DoTurnTest()
-        {
+            [Test()]
+            public void MovePawnTest()
+            {
+            }
+
+            [Test()]
+            public void DoTurnTest()
+            {
+            }
         }
     }
 }

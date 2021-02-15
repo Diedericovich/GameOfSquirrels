@@ -4,25 +4,13 @@ namespace _GameOfSquirrels
 {
     public abstract class Tile : ITile
     {
-        private int _locationX;
+        public int LocationX { get; set; }
 
-        public int LocationX
-        {
-            get { return _locationX; }
-            set { _locationX = value; }
-        }
-
-        private int _locationY;
-
-        public int LocationY
-        {
-            get { return _locationY; }
-            set { _locationY = value; }
-        }
+        public int LocationY { get; set; }
 
         public Border TileBorder { get; set; }
 
-        public Tile(int locationX, int locationY)
+        protected Tile(int locationX, int locationY)
         {
             LocationX = locationX;
             LocationY = locationY;

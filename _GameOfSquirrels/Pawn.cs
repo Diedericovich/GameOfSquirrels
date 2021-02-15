@@ -1,8 +1,4 @@
-﻿using System;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows.Shapes;
 
 namespace _GameOfSquirrels
 {
@@ -52,13 +48,7 @@ namespace _GameOfSquirrels
             }
         }
 
-        private Ellipse _ellipse;
-
-        public Ellipse Ellipse
-        {
-            get { return _ellipse; }
-            set { _ellipse = value; }
-        }
+        public Ellipse Ellipse { get; set; }
 
         public Pawn(int locationX, int locationY)
         {
@@ -68,25 +58,12 @@ namespace _GameOfSquirrels
             TurnsToSkip = 0;
             LocationX = locationX;
             LocationY = locationY;
-
-            Ellipse = new Ellipse() { Height = 50, Width = 50, Margin = new System.Windows.Thickness(0, 0, 0, 15) };
-            //Ellipse = new Ellipse() { };
-
-            BitmapImage img = new BitmapImage(new Uri(@"https://pngimg.com/uploads/squirrel/squirrel_PNG15804.png"));
-            ImageBrush image = new ImageBrush();
-            image.ImageSource = img;
-            image.Stretch = Stretch.Fill;
-            Ellipse.Fill = image;
-            //TileBorder.Background = image;
-            //TileBorder.Margin = new Thickness(1);
         }
 
         public void Move(int x, int y)
         {
             LocationX += x;
             LocationY += y;
-            Grid.SetColumn(Ellipse, LocationX);
-            Grid.SetRow(Ellipse, LocationY);
         }
     }
 }

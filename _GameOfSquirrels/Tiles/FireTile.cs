@@ -9,7 +9,6 @@ namespace _GameOfSquirrels
             : base(locationX, locationY)
         {
             TileBorder = new Border();
-            //TileBorder.Background = Brushes.Firebrick;
         }
 
         public override int GetInteraction()

@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace _GameOfSquirrels
 {
@@ -7,14 +10,12 @@ namespace _GameOfSquirrels
         public BridgeTile(int locationX, int locationY)
             : base(locationX, locationY)
         {
-            //TileBorder.Background = Brushes.LightSlateGray;
+            TileBorder.Background = Brushes.LightSlateGray;
 
-            //BitmapImage img = new BitmapImage(new Uri(@"http://www.pngall.com/wp-content/uploads/2/Bridge-PNG-Picture.png"));
-            //ImageBrush image = new ImageBrush();
-            //image.ImageSource = img;
-            //image.Stretch = Stretch.Fill;
-            //TileBorder.Background = image;
-            //TileBorder.Margin = new Thickness(1);
+            var img = new BitmapImage(new Uri(@"http://www.pngall.com/wp-content/uploads/2/Bridge-PNG-Picture.png"));
+            var image = new ImageBrush { ImageSource = img, Stretch = Stretch.Fill };
+            TileBorder.Background = image;
+            TileBorder.Margin = new Thickness(1);
         }
 
         public override int GetInteraction()

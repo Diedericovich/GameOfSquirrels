@@ -8,7 +8,7 @@ namespace _GameOfSquirrels
 
         public int RollDice(int bottom, int top)
         {
-            int result = dice.Next(bottom, top);
+            var result = dice.Next(bottom, top);
 
             return result;
         }

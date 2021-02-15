@@ -6,8 +6,8 @@ namespace _GameOfSquirrels
     {
         public List<IPawn> CreatePawns(int amount)
         {
-            List<IPawn> playerList = new List<IPawn>();
-            for (int i = 0; i < amount; i++)
+            var playerList = new List<IPawn>();
+            for (var i = 0; i < amount; i++)
             {
                 playerList.Add(new Pawn(0, 0));
 
