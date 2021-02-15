@@ -142,7 +142,7 @@ namespace _GameOfSquirrels
             }
         }
 
-        private void MovePawn(int roll)
+        public void MovePawn(int roll)
         {
             for (var i = 1; i < roll + 1; i++)
             {
