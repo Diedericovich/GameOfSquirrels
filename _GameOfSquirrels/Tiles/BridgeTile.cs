@@ -6,7 +6,7 @@ using System.Windows.Media.Imaging;
 
 namespace _GameOfSquirrels
 {
-    internal class BridgeTile : Tile
+    public class BridgeTile : Tile
     {
         public BridgeTile(int locationX, int locationY)
             : base(locationX, locationY)

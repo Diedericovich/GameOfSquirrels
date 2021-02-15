@@ -13,12 +13,12 @@ namespace _GameOfSquirrels
         {
             TileBorder = new Border();
             TileBorder.Background = Brushes.BlanchedAlmond;
-            BitmapImage img = new BitmapImage(new Uri(@"C:\Users\jens_\Pictures\Backgrounds\kisspng-scratte-bear-squirrel-drawing-scrat-by-miserysteaparty-on-deviantart-5c5ad24d1dcd87.2096942815494559491221.png"));
-            ImageBrush image = new ImageBrush();
-            image.ImageSource = img;
-            image.Stretch = Stretch.Fill;
-            TileBorder.Background = image;
-            TileBorder.Margin = new Thickness(1);
+            //BitmapImage img = new BitmapImage(new Uri(@"C:\Users\jens_\Pictures\Backgrounds\kisspng-scratte-bear-squirrel-drawing-scrat-by-miserysteaparty-on-deviantart-5c5ad24d1dcd87.2096942815494559491221.png"));
+            //ImageBrush image = new ImageBrush();
+            //image.ImageSource = img;
+            //image.Stretch = Stretch.Fill;
+            //TileBorder.Background = image;
+            //TileBorder.Margin = new Thickness(1);
         }
 
         public override int GetInteraction()

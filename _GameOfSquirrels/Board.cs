@@ -3,7 +3,7 @@ using System.Windows.Controls;
 
 namespace _GameOfSquirrels
 {
-    internal class Board
+    public class Board
     {
         public List<IPawn> PlayerList;
         public List<ITile> TileList;

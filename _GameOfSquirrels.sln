@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_GameOfSquirrels", "_GameOfSquirrels\_GameOfSquirrels.csproj", "{525287BF-63E0-4C78-B45B-D3E3D2BB6E7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameOfSquirrel.Testing", "NUnitTestProject1\GameOfSquirrel.Testing.csproj", "{1A6A89CB-6D1B-4F7C-8D4A-5D353C2F4711}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameOfSquirrels.Test", "GameOfSquirrels.Test\GameOfSquirrels.Test.csproj", "{1A3B811E-9C0F-42D1-9A6B-1EE0794CB8EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{525287BF-63E0-4C78-B45B-D3E3D2BB6E7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{525287BF-63E0-4C78-B45B-D3E3D2BB6E7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{525287BF-63E0-4C78-B45B-D3E3D2BB6E7B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1A6A89CB-6D1B-4F7C-8D4A-5D353C2F4711}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1A6A89CB-6D1B-4F7C-8D4A-5D353C2F4711}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1A6A89CB-6D1B-4F7C-8D4A-5D353C2F4711}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1A6A89CB-6D1B-4F7C-8D4A-5D353C2F4711}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A3B811E-9C0F-42D1-9A6B-1EE0794CB8EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A3B811E-9C0F-42D1-9A6B-1EE0794CB8EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A3B811E-9C0F-42D1-9A6B-1EE0794CB8EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A3B811E-9C0F-42D1-9A6B-1EE0794CB8EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

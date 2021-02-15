@@ -14,12 +14,12 @@ namespace _GameOfSquirrels
             TileBorder = new Border();
             //TileBorder.Background = Brushes.IndianRed;
 
-            BitmapImage img = new BitmapImage(new Uri(@"C:\Users\jens_\Pictures\Backgrounds\pngkit_cannon-png_1515093.png"));
-            ImageBrush image = new ImageBrush();
-            image.ImageSource = img;
-            image.Stretch = Stretch.Fill;
-            TileBorder.Background = image;
-            TileBorder.Margin = new Thickness(1);
+            //BitmapImage img = new BitmapImage(new Uri(@"C:\Users\jens_\Pictures\Backgrounds\pngkit_cannon-png_1515093.png"));
+            //ImageBrush image = new ImageBrush();
+            //image.ImageSource = img;
+            //image.Stretch = Stretch.Fill;
+            //TileBorder.Background = image;
+            //TileBorder.Margin = new Thickness(1);
         }
 
         public override int GetInteraction()
