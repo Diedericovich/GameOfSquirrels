@@ -22,9 +22,9 @@ namespace _GameOfSquirrels
             lblCurrentPlayer.DataContext = Game;
             lblCurrentRound.DataContext = Game;
 
-            var img = new BitmapImage(new Uri(@"https://cdn.discordapp.com/attachments/809042663969652756/810496364077252638/Overlay_test.png"));
-            var image = new ImageBrush { ImageSource = img, Stretch = Stretch.Fill };
-            Overlay.Background = image;
+            //var img = new BitmapImage(new Uri(@"https://cdn.discordapp.com/attachments/809042663969652756/810496364077252638/Overlay_test.png"));
+            //var image = new ImageBrush { ImageSource = img, Stretch = Stretch.Fill };
+            //Overlay.Background = image;
         }
 
         private void TestButtonClick(object sender, RoutedEventArgs e)

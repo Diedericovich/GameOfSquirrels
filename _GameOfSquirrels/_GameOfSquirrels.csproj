@@ -10,13 +10,19 @@
   <ItemGroup>
     <None Remove="6906qzxo55711.png" />
     <None Remove="btnRoll.png" />
+    <None Remove="Exporter2 - Squirrelgame BACKGROUND.png" />
+    <None Remove="Exporter2 - Squirrelgame OVERLAY.png" />
+    <None Remove="fillbackground.png" />
     <None Remove="TileGrasstestborder.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="6906qzxo55711.png" />
-    <Resource Include="btnRoll.png" />
-    <Resource Include="TileGrasstestborder.png" />
+    <Resource Include="Exporter2 - Squirrelgame BACKGROUND.png" />
+    <Resource Include="Exporter2 - Squirrelgame OVERLAY.png" />
+    <Resource Include="fillbackground.png" />
+    <Resource Include="Resources\6906qzxo55711.png" />
+    <Resource Include="Resources\btnRoll.png" />
+    <Resource Include="Resources\TileGrasstestborder.png" />
   </ItemGroup>
 
 </Project>

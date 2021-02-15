@@ -55,7 +55,7 @@ namespace _GameOfSquirrels
             BoardWidth = 8;
             BoardHeight = 8;
             GridGame = gridGame;
-            GridGame.ShowGridLines = true;
+            GridGame.ShowGridLines = false;
             CurrentPlayer = 0;
         }
 
@@ -78,9 +78,9 @@ namespace _GameOfSquirrels
         public void GenerateBoard()
         {
             _board = new Board(GridGame, BoardHeight, BoardWidth);
-            var img = new BitmapImage(new Uri(@"https://cdn.discordapp.com/attachments/809042663969652756/810496380548284476/Backgroundtest_-_demo1.png"));
-            var image = new ImageBrush { ImageSource = img };
-            GridGame.Background = image;
+            //var img = new BitmapImage(new Uri(@"https://cdn.discordapp.com/attachments/809042663969652756/810496380548284476/Backgroundtest_-_demo1.png"));
+            //var image = new ImageBrush { ImageSource = img };
+            //GridGame.Background = image;
             GenerateTiles();
             GeneratePawns();
         }

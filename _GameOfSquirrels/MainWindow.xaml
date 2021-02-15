@@ -1,12 +1,15 @@
 ﻿<Window x:Class="_GameOfSquirrels.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         Title="MainWindow"
         Width="1200"
         Height="900"
         mc:Ignorable="d">
+    <Window.Background>
+        <ImageBrush ImageSource="/fillbackground.png" />
+    </Window.Background>
     <Grid x:Name="GridOuter">
         <!--#region Grid Columns & Rows-->
         <Grid.ColumnDefinitions>
@@ -31,12 +34,24 @@
         <Grid x:Name="GridGame"
               Grid.Row="1"
               Grid.RowSpan="3"
-              Grid.Column="1" />
+              Grid.Column="1">
+            <Grid.Background>
+                <ImageBrush ImageSource="/Exporter2 - Squirrelgame BACKGROUND.png" />
+            </Grid.Background>
+        </Grid>
         <Canvas x:Name="Overlay"
                 Grid.Row="1"
                 Grid.RowSpan="3"
-                Grid.Column="1" />
+                Grid.Column="1">
+            <Canvas.Background>
+                <ImageBrush ImageSource="/Exporter2 - Squirrelgame OVERLAY.png" />
+            </Canvas.Background>
+        </Canvas>
         <!--</ScrollViewer>-->
+        <StackPanel Grid.Row="1"
+                    Grid.Column="3">
+            <ListBox x:Name="ListBoxAboveButton" />
+        </StackPanel>
         <Button Grid.Row="3"
                 Grid.Column="3"
                 Click="TestButtonClick" />
