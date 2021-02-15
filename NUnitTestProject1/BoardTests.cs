@@ -1,6 +1,6 @@
 using NUnit.Framework;
 
-namespace _GameOfSquirrels.Tests
+namespace GameOfSquirrel.Testing
 {
     [TestFixture()]
     public class BoardTests

@@ -6,7 +6,7 @@ namespace _GameOfSquirrels
     {
         public List<ITile> CreateTiles(int boardHeight, int boardWidth)
         {
-            List<ITile> tiles = new List<ITile>();
+            var tiles = new List<ITile>();
             //int counter = 0;
 
             //for (int i = 0; i < boardHeight; i++)
@@ -17,8 +17,8 @@ namespace _GameOfSquirrels
             //    }
             //}
 
-            tiles.Add(new BeartrapTile(4, 0));
-            //tiles.Add(new TeleportTile(1, 0));
+            tiles.Add(new BearTrapTile(4, 0));
+            tiles.Add(new TeleportTile(3, 0));
             tiles.Add(new BridgeTile(1, 0));
             tiles.Add(new SquirrelTile(2, 0));
             tiles.Add(new CatapultTile(5, 0));

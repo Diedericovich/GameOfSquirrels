@@ -2,9 +2,9 @@
 
 namespace _GameOfSquirrels
 {
-    public class BeartrapTile : Tile
+    public class BearTrapTile : Tile
     {
-        public BeartrapTile(int locationX, int locationY)
+        public BearTrapTile(int locationX, int locationY)
              : base(locationX, locationY)
         {
         }
