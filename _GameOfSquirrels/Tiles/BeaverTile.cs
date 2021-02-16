@@ -7,9 +7,9 @@
         {
         }
 
-        public override int GetInteraction()
+        public override string GetInteractionMessage()
         {
-            return 0;
+            return "";
         }
     }
 }

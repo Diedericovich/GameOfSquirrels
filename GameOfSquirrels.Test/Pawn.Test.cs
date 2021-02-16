@@ -15,7 +15,9 @@ namespace GameOfSquirrels.Test
         }
 
         [TestCase(3, 3)]
-        public void Move_WhenChangingLocationX_CheckIfLocationCorrect(int move, int expectedLocation)
+        [TestCase(8, 6)]
+        [TestCase(3, 3)]
+        public void Move_WhenChangingLocation_CheckIfLocationCorrect(int move, int expectedLocation)
         {
             // ARRANGE
 

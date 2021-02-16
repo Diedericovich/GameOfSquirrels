@@ -12,19 +12,15 @@ namespace _GameOfSquirrels
     {
         public Game Game;
 
-        public MainWindow()
+        public MainWindow(int players)
         {
             InitializeComponent();
-            //this.Background = new SolidColorBrush(Color.FromRgb(0, 115, 21));
-            Game = new Game(GridGame);
-            Game.GenerateBoard();
+            Game = new Game();
+            Game.StartGame(GridGame, players);
+            lvPlayers.ItemsSource = Game.PlayerList;
             lblDiceResult.DataContext = Game;
             lblCurrentPlayer.DataContext = Game;
             lblCurrentRound.DataContext = Game;
-
-            //var img = new BitmapImage(new Uri(@"https://cdn.discordapp.com/attachments/809042663969652756/810496364077252638/Overlay_test.png"));
-            //var image = new ImageBrush { ImageSource = img, Stretch = Stretch.Fill };
-            //Overlay.Background = image;
         }
 
         private void TestButtonClick(object sender, RoutedEventArgs e)

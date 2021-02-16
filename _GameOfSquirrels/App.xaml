@@ -1,6 +1,39 @@
 ﻿<Application x:Class="_GameOfSquirrels.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             StartupUri="MainWindow.xaml">
-    <Application.Resources />
+             StartupUri="MainMenu.xaml">
+    <Application.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily"
+                    Value="Consolas" />
+            <Setter Property="FontSize"
+                    Value="14" />
+            <Setter Property="Foreground"
+                    Value="#FFB21817" />
+        </Style>
+        <DataTemplate x:Key="TempDataTemplate">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1.5*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="1"
+                            Orientation="Horizontal">
+                    <Image Width="50"
+                           Height="50"
+                           Source="{Binding Image}"
+                           Stretch="UniformToFill" />
+                    <StackPanel>
+                        <TextBlock Text="{Binding LocationX, StringFormat='    X: {0} ', FallbackValue=X:}"
+                                   FontSize="18"
+                                   HorizontalAlignment="Left" />
+                        <TextBlock Text="{Binding LocationY, StringFormat='    Y: {0} ', FallbackValue=Y:}"
+                                   FontSize="18"
+                                   HorizontalAlignment="Left" />
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+    </Application.Resources>
+    
 </Application>

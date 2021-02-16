@@ -1,10 +1,10 @@
-﻿using System.Windows.Shapes;
+﻿using System.ComponentModel;
+using System.Windows.Shapes;
 
 namespace _GameOfSquirrels
 {
-    public interface IPawn
+    public interface IPawn : INotifyPropertyChanged
     {
-        Ellipse Ellipse { get; set; }
         bool GoingRight { get; set; }
         bool GoingUp { get; set; }
         bool IsReversed { get; set; }
@@ -13,6 +13,8 @@ namespace _GameOfSquirrels
         int LocationX { get; set; }
         int LocationY { get; set; }
         int TurnsToSkip { get; set; }
+        string Image { get; set; }
+        double Size { get; set; }
 
         void Move(int x, int y);
     }

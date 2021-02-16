@@ -7,19 +7,12 @@ namespace _GameOfSquirrels
         public SquirrelTile(int locationX, int locationY)
                         : base(locationX, locationY)
         {
-            //TileBorder.Background = Brushes.BlanchedAlmond;
-            //BitmapImage img = new BitmapImage(new Uri(@"C:\Users\jens_\Pictures\Backgrounds\kisspng-scratte-bear-squirrel-drawing-scrat-by-miserysteaparty-on-deviantart-5c5ad24d1dcd87.2096942815494559491221.png"));
-            //ImageBrush image = new ImageBrush();
-            //image.ImageSource = img;
-            //image.Stretch = Stretch.Fill;
-            //TileBorder.Background = image;
-            //TileBorder.Margin = new Thickness(1);
+            Image = "https://i.ibb.co/j5zP1Br/squirreltile.png";
         }
 
-        public override int GetInteraction()
+        public override string GetInteractionMessage()
         {
-            MessageBox.Show("A friendly squirrel helps you move forward again!");
-            return 0;
+            return "A friendly squirrel helps you move forward again!";
         }
     }
 }

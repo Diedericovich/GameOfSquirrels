@@ -7,12 +7,12 @@ namespace _GameOfSquirrels
         public BearTrapTile(int locationX, int locationY)
              : base(locationX, locationY)
         {
+            Image = "https://i.ibb.co/BCV1z2b/beartrap.png";
         }
 
-        public override int GetInteraction()
+        public override string GetInteractionMessage()
         {
-            MessageBox.Show("You're stuck!");
-            return -3;
+            return "You're stuck!";
         }
     }
 }

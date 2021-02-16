@@ -7,12 +7,12 @@ namespace _GameOfSquirrels
         public TeleportTile(int locationX, int locationY)
             : base(locationX, locationY)
         {
+            Image = "https://i.ibb.co/LtSPvyr/teleporttile.png";
         }
 
-        public override int GetInteraction()
+        public override string GetInteractionMessage()
         {
-            MessageBox.Show("Random teleport!");
-            return 0;
+            return "Random teleport!";
         }
     }
 }

@@ -1,18 +1,16 @@
-﻿using System.Windows;
-
-namespace _GameOfSquirrels
+﻿namespace _GameOfSquirrels
 {
     public class TunnelTile : Tile
     {
         public TunnelTile(int locationX, int locationY)
             : base(locationX, locationY)
         {
+            Image= "https://i.ibb.co/8bxVnVD/tunneltile.png";
         }
 
-        public override int GetInteraction()
+        public override string GetInteractionMessage()
         {
-            MessageBox.Show("You find a secret tunnel!");
-            return -3;
+            return "You find a secret tunnel!";
         }
     }
 }
