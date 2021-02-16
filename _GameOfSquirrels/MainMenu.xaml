@@ -30,7 +30,7 @@
                 Grid.RowSpan="2"
                 Grid.Column="2">
             <Border.Background>
-                <ImageBrush ImageSource="/stardewborder.png"
+                <ImageBrush ImageSource="/Resources/stardewborder.png"
                             Stretch="Fill" />
             </Border.Background>
         </Border>
@@ -42,7 +42,7 @@
                 Content=""
                 Foreground="#00000000">
             <Button.Background>
-                <ImageBrush ImageSource="/stardewbutton.png" />
+                <ImageBrush ImageSource="/Resources/stardewbutton.png" />
             </Button.Background>
         </Button>
         <DockPanel Grid.Row="2"

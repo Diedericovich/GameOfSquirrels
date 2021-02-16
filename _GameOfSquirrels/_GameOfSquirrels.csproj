@@ -1,46 +1,46 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-    <UseWPF>true</UseWPF>
-    <LangVersion>latest</LangVersion>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<UseWPF>true</UseWPF>
+		<LangVersion>latest</LangVersion>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="150890470_564279167877961_2533995434875167959_n.png" />
-    <None Remove="backsq.png" />
-    <None Remove="btnRoll.png" />
-    <None Remove="Resources\150890470_564279167877961_2533995434875167959_n.png" />
-    <None Remove="Resources\backsq.png" />
-    <None Remove="Resources\stardewborder.png" />
-    <None Remove="Resources\stardewborderdark.png" />
-    <None Remove="Resources\stardewborderroll.png" />
-    <None Remove="Resources\stardewbutton.png" />
-    <None Remove="Resources\stardewpanel.png" />
-    <None Remove="stardewborder.png" />
-    <None Remove="stardewborderdark.png" />
-    <None Remove="stardewborderroll.png" />
-    <None Remove="stardewbutton.png" />
-    <None Remove="stardewpanel.png" />
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Remove="Images\**" />
+		<EmbeddedResource Remove="Images\**" />
+		<None Remove="Images\**" />
+		<Page Remove="Images\**" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="XamlAnimatedGif" Version="1.2.3" />
-  </ItemGroup>
+	<ItemGroup>
 
-  <ItemGroup>
-    <Resource Include="Resources\150890470_564279167877961_2533995434875167959_n.png" />
-    <Resource Include="Resources\backsq.png" />
-    <Resource Include="Resources\stardewborder.png" />
-    <Resource Include="Resources\stardewborderdark.png" />
-    <Resource Include="Resources\stardewborderroll.png" />
-    <Resource Include="Resources\stardewbutton.png" />
-    <Resource Include="Resources\stardewpanel.png" />
-  </ItemGroup>
+		<None Remove="Overlay test.png" />
 
-  <ItemGroup>
-    <Folder Include="Images\" />
-  </ItemGroup>
+		<None Remove="Resources\150890470_564279167877961_2533995434875167959_n.png" />
+		<None Remove="Resources\backsq.png" />
+		<None Remove="Resources\stardewborder.png" />
+		<None Remove="Resources\stardewborderdark.png" />
+		<None Remove="Resources\stardewborderroll.png" />
+		<None Remove="Resources\stardewbutton.png" />
+		<None Remove="Resources\stardewpanel.png" />
+
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="XamlAnimatedGif" Version="1.2.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Resource Include="Overlay test.png" />
+		<Resource Include="Resources\150890470_564279167877961_2533995434875167959_n.png" />
+		<Resource Include="Resources\backsq.png" />
+		<Resource Include="Resources\stardewborder.png" />
+		<Resource Include="Resources\stardewborderdark.png" />
+		<Resource Include="Resources\stardewborderroll.png" />
+		<Resource Include="Resources\stardewbutton.png" />
+		<Resource Include="Resources\stardewpanel.png" />
+	</ItemGroup>
 
 </Project>

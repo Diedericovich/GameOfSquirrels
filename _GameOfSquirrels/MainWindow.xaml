@@ -35,7 +35,7 @@
                 Grid.RowSpan="3"
                 Grid.Column="1">
             <Canvas.Background>
-                <ImageBrush ImageSource="/150890470_564279167877961_2533995434875167959_n.png" />
+                <ImageBrush ImageSource="/Overlay test.png" />
             </Canvas.Background>
         </Canvas>
         <Grid Grid.Row="1"
@@ -53,7 +53,7 @@
             </Grid.RowDefinitions>
             <Border Grid.Row="4">
                 <Border.Background>
-                    <ImageBrush ImageSource="/stardewborderdark.png"
+                    <ImageBrush ImageSource="/Resources/stardewborderdark.png"
                                 Stretch="Fill" />
                 </Border.Background>
                 <TextBlock x:Name="lblDiceResult"
@@ -66,7 +66,7 @@
 
             <Border Grid.Row="2">
                 <Border.Background>
-                    <ImageBrush ImageSource="/stardewborderdark.png"
+                    <ImageBrush ImageSource="/Resources/stardewborderdark.png"
                                 Stretch="Fill" />
                 </Border.Background>
                 <TextBlock x:Name="lblCurrentPlayer"
@@ -78,7 +78,7 @@
             </Border>
             <Border Grid.Row="0">
                 <Border.Background>
-                    <ImageBrush ImageSource="/stardewborderdark.png"
+                    <ImageBrush ImageSource="/Resources/stardewborderdark.png"
                                 Stretch="Fill" />
                 </Border.Background>
                 <TextBlock x:Name="lblCurrentRound"
@@ -106,7 +106,7 @@
                     Click="TestButtonClick"
                     BorderBrush="#00707070">
                 <Button.Background>
-                    <ImageBrush ImageSource="/stardewborderroll.png" />
+                    <ImageBrush ImageSource="/Resources/stardewborderroll.png" />
                 </Button.Background>
             </Button>
         </Grid>
