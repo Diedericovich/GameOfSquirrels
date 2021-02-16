@@ -13,7 +13,7 @@ using System.Windows.Shapes;
 
 namespace _GameOfSquirrels
 {
-    public class Game : INotifyPropertyChanged
+    public class Game : INotifyPropertyChanged, IGame
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -109,16 +109,15 @@ namespace _GameOfSquirrels
                 var image = new ImageBrush { ImageSource = img, Stretch = Stretch.Fill };
                 square.Fill = image;
 
-                Binding bindingY = new Binding("LocationY");
-                bindingY.Source = item;
+                Binding bindingY = new Binding("LocationY") { Source = item };
+                Binding bindingX = new Binding("LocationX") { Source = item };
+                Binding bindingSize = new Binding("Size") { Source = item };
+
                 square.SetBinding(Grid.RowProperty, bindingY);
-                Binding bindingX = new Binding("LocationX");
-                bindingX.Source = item;
                 square.SetBinding(Grid.ColumnProperty, bindingX);
-                Binding bindingSize = new Binding("Size");
-                bindingSize.Source = item;
                 square.SetBinding(Rectangle.HeightProperty, bindingSize);
                 square.SetBinding(Rectangle.WidthProperty, bindingSize);
+
                 GridGame.Children.Add(square);
             }
         }
