@@ -24,5 +24,29 @@ namespace _GameOfSquirrels
         {
             Game.DoTurn();
         }
+
+        private void ToggleGrid(object sender, RoutedEventArgs e)
+        {
+            if (GridGame.ShowGridLines)
+            {
+                GridGame.ShowGridLines = false;
+            }
+            else
+            {
+                GridGame.ShowGridLines = true;
+            }
+        }
+
+        private void ToggleLegend(object sender, RoutedEventArgs e)
+        {
+            if (LegendOverlay.Visibility == Visibility.Collapsed)
+            {
+                LegendOverlay.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                LegendOverlay.Visibility = Visibility.Collapsed;
+            }
+        }
     }
 }

@@ -90,7 +90,7 @@ namespace _GameOfSquirrels
             BoardTiles = tileFactory.CreateTiles(_boardHeight, _boardWidth);
             foreach (var tile in BoardTiles)
             {
-                Border border = new Border() { Height = 60, Width = 35 };
+                Border border = new Border() { Height = 40, Width = 30 };
                 var img = new BitmapImage(new Uri(tile.Image));
                 var image = new ImageBrush { ImageSource = img, Stretch = Stretch.Fill };
                 border.Background = image;
@@ -130,23 +130,50 @@ namespace _GameOfSquirrels
 
             if (!PlayerList[CurrentPlayer].IsSkippingNextTurn)
             {
-                var dice1 = new Dice();
-                var roll = dice1.RollDice(1, 7);
-                var roll2 = dice1.RollDice(1, 7);
+                var roll = _dice.RollDice(1, 7);
+                var roll2 = _dice.RollDice(1, 7);
                 LastNumberRolled = roll + roll2;
-                MovePawn(LastNumberRolled, PlayerList[CurrentPlayer]);
+                CheckForDoubleThrees(roll, roll2);
+                CheckForDoubleSixes(roll, roll2);
             }
             else
             {
-                MessageBox.Show("Turn skipped");
-                PlayerList[CurrentPlayer].TurnsToSkip -= 1;
-                if (PlayerList[CurrentPlayer].TurnsToSkip == 0)
-                {
-                    PlayerList[CurrentPlayer].IsSkippingNextTurn = false;
-                }
-                PlayerFinishedMoving = true;
+                SkipTurn();
             }
             NextTurn();
+        }
+
+        private void CheckForDoubleSixes(int roll, int roll2)
+        {
+            if (roll == 6 && roll2 == 6)
+            {
+                MessageBox.Show("You rolled two 6's. You get another turn!");
+                DoTurn();
+            }
+        }
+
+        private void CheckForDoubleThrees(int roll, int roll2)
+        {
+            if (roll == 3 && roll2 == 3)
+            {
+                MessageBox.Show("You rolled two 3's. Go back to start!");
+                InteractWithFire(PlayerList[CurrentPlayer]);
+            }
+            else
+            {
+                MovePawn(LastNumberRolled, PlayerList[CurrentPlayer]);
+            }
+        }
+
+        private void SkipTurn()
+        {
+            MessageBox.Show("Turn skipped");
+            PlayerList[CurrentPlayer].TurnsToSkip -= 1;
+            if (PlayerList[CurrentPlayer].TurnsToSkip == 0)
+            {
+                PlayerList[CurrentPlayer].IsSkippingNextTurn = false;
+            }
+            PlayerFinishedMoving = true;
         }
 
         public async void MovePawn(int roll, IPawn pawn)
@@ -158,7 +185,7 @@ namespace _GameOfSquirrels
                     PlayerFinishedMoving = true;
                 }
                 await Task.Delay(300);
-                MoveOnBoard(pawn);
+                UpdatePawnLocation(pawn);
             }
             if (PlayerFinishedMoving)
             {
@@ -269,56 +296,75 @@ namespace _GameOfSquirrels
             pawn.GoingRight = !pawn.GoingRight;
         }
 
-        private void MoveOnBoard(IPawn pawn)
+        private void UpdatePawnLocation(IPawn pawn)
         {
-            if (pawn.LocationX == _boardWidth - 1 && pawn.IsReversed && pawn.GoingRight) // Right turn reverse
+            if (pawn.LocationX == 0 && pawn.LocationY == 0)
+            {
+                pawn.GoingRight = true;
+                pawn.Move(1, 0);
+            }
+            if (pawn.IsReversed)
+            {
+                MoveBackwards(pawn);
+
+            }
+            else
+            {
+                MoveForward(pawn);
+            }
+
+        }
+
+        private void MoveBackwards(IPawn pawn)
+        {
+            if (pawn.LocationX == _boardWidth - 1 && pawn.GoingRight)
             {
                 pawn.Move(0, -1);
                 pawn.GoingRight = false;
             }
-            else if (pawn.LocationX == 0 && pawn.IsReversed && !pawn.GoingRight) // Left turn reverse
+            else if (pawn.LocationX == 0 && !pawn.GoingRight)
             {
                 pawn.Move(0, -1);
                 pawn.GoingRight = true;
             }
-            else if (pawn.LocationX == _boardWidth - 1 && pawn.GoingRight) // Right turn
+            else
             {
-                pawn.Move(0, 1);
-                pawn.GoingRight = false;
+                MoveForward(pawn);
             }
-            else switch (pawn.LocationX)
+        }
+
+        private void MoveForward(IPawn pawn)
+        {
+            if (pawn.GoingRight)
+            {
+                if (pawn.LocationX == _boardWidth - 1)
                 {
-                    //If at start
-                    case 0 when pawn.LocationY == 0:
-                        pawn.GoingRight = true;
-                        pawn.Move(1, 0);
-                        break;
-                    //Go past the end
-                    case 0 when pawn.LocationY == _boardHeight - 1:
-                        pawn.Move(1, 0);
-                        pawn.GoingRight = true;
-                        pawn.IsReversed = true;
-                        break;
-                    // Left boardside turn
-                    case 0 when !pawn.GoingRight:
-                        pawn.Move(0, 1);
-                        pawn.GoingRight = true;
-                        break;
-
-                    default:
-                        {
-                            if (pawn.GoingRight) // Move right
-                            {
-                                pawn.Move(1, 0);
-                            }
-                            else // Move left
-                            {
-                                pawn.Move(-1, 0);
-                            }
-
-                            break;
-                        }
+                    pawn.Move(0, 1);
+                    pawn.GoingRight = false;
                 }
+                else
+                {
+                    pawn.Move(1, 0);
+                }
+            }
+            else
+            {
+                if (pawn.LocationX == 0 && pawn.LocationY == _boardHeight - 1)
+                {
+                    pawn.Move(1, 0);
+                    pawn.GoingRight = true;
+                    pawn.IsReversed = true;
+                }
+                else if (pawn.LocationX == 0)
+                {
+                    pawn.Move(0, 1);
+                    pawn.GoingRight = true;
+                }
+                else
+                {
+                    pawn.Move(-1, 0);
+                }
+            }
         }
 
         private void CheckPlayerDirection(IPawn pawn)

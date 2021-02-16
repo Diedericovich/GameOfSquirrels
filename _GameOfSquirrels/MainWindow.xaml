@@ -110,5 +110,48 @@
                 </Button.Background>
             </Button>
         </Grid>
+        <StackPanel Grid.Row="4"
+                    Grid.Column="1"
+                    Orientation="Horizontal">
+            <Button x:Name="btnToggleGrid"
+                    Click="ToggleGrid"
+                    Width="35"
+                    Height="35"
+                    Margin="0,0,15,0">
+                <Button.Background>
+                    <ImageBrush ImageSource="/Resources/gridpng.png" />
+                </Button.Background>
+            </Button>
+            <Button x:Name="btnToggleLegend"
+                    Click="ToggleLegend"
+                    Width="35"
+                    Height="35"
+                    Margin="0,0,15,0">
+                <Button.Background>
+                    <ImageBrush ImageSource="/Resources/infopng.png" />
+                </Button.Background>
+            </Button>
+            <!--<Button x:Name="btnToggleCredits"
+                    Click="ToggleCredits"
+                    Width="35"
+                    Height="35">
+                <Button.Background>
+                    <ImageBrush ImageSource="/Resources/infopng.png" />
+                </Button.Background>
+            </Button>-->
+        </StackPanel>
+        <Canvas x:Name="LegendOverlay"
+                Grid.Row="1"
+                Grid.RowSpan="3"
+                Grid.Column="1"
+                Visibility="Collapsed"
+                Background="#BFAB5D3E">
+            <Image Width="650"
+                   Height="650"
+                   Canvas.Left="23"
+                   Canvas.Top="59"
+                   Source="/Resources/Legend.png">
+            </Image>
+        </Canvas>
     </Grid>
 </Window>

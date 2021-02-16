@@ -16,6 +16,12 @@
 
 	<ItemGroup>
 
+		<None Remove="gridpng.png" />
+
+		<None Remove="infopng.png" />
+
+		<None Remove="Legend.png" />
+
 		<None Remove="Overlay test.png" />
 
 		<None Remove="Resources\150890470_564279167877961_2533995434875167959_n.png" />
@@ -33,6 +39,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Resource Include="Resources\gridpng.png" />
+		<Resource Include="Resources\infopng.png" />
+		<Resource Include="Resources\Legend.png" />
 		<Resource Include="Overlay test.png" />
 		<Resource Include="Resources\150890470_564279167877961_2533995434875167959_n.png" />
 		<Resource Include="Resources\backsq.png" />
