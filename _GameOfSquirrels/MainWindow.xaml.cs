@@ -48,5 +48,17 @@ namespace _GameOfSquirrels
                 LegendOverlay.Visibility = Visibility.Collapsed;
             }
         }
+
+        private void ToggleCredits(object sender, RoutedEventArgs e)
+        {
+            if (CreditsOverlay.Visibility == Visibility.Collapsed)
+            {
+                CreditsOverlay.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                CreditsOverlay.Visibility = Visibility.Collapsed;
+            }
+        }
     }
 }

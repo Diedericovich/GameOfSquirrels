@@ -100,7 +100,7 @@
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
             </ListView>
-            <Button Grid.Row="7"
+            <Button Style="{DynamicResource ButtonStyle}" Grid.Row="7"
                     MaxWidth="300"
                     MaxHeight="100"
                     Click="TestButtonClick"
@@ -114,6 +114,7 @@
                     Grid.Column="1"
                     Orientation="Horizontal">
             <Button x:Name="btnToggleGrid"
+                    Style="{DynamicResource ButtonStyle}"
                     Click="ToggleGrid"
                     Width="35"
                     Height="35"
@@ -123,6 +124,7 @@
                 </Button.Background>
             </Button>
             <Button x:Name="btnToggleLegend"
+                    Style="{DynamicResource ButtonStyle}"
                     Click="ToggleLegend"
                     Width="35"
                     Height="35"
@@ -131,14 +133,15 @@
                     <ImageBrush ImageSource="/Resources/infopng.png" />
                 </Button.Background>
             </Button>
-            <!--<Button x:Name="btnToggleCredits"
+            <Button x:Name="btnToggleCredits"
+                    Style="{DynamicResource ButtonStyle}"
                     Click="ToggleCredits"
                     Width="35"
                     Height="35">
                 <Button.Background>
-                    <ImageBrush ImageSource="/Resources/infopng.png" />
+                    <ImageBrush ImageSource="/Resources/Creditsbutton.png" />
                 </Button.Background>
-            </Button>-->
+            </Button>
         </StackPanel>
         <Canvas x:Name="LegendOverlay"
                 Grid.Row="1"
@@ -151,6 +154,20 @@
                    Canvas.Left="23"
                    Canvas.Top="59"
                    Source="/Resources/Legend.png">
+            </Image>
+        </Canvas>
+        <Canvas x:Name="CreditsOverlay"
+                Grid.Row="1"
+                Grid.RowSpan="3"
+                Grid.Column="1"
+                Visibility="Collapsed"
+                Background="#BFAB5D3E">
+            <Image Width="650"
+                   Height="300"
+                   Canvas.Left="23"
+                   Canvas.Top="234"
+                   Source="/Resources/Credits.png"
+                   Stretch="Fill">
             </Image>
         </Canvas>
     </Grid>

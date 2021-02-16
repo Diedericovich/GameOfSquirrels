@@ -16,6 +16,10 @@
 
 	<ItemGroup>
 
+		<None Remove="Credits.png" />
+
+		<None Remove="Creditsbutton.png" />
+
 		<None Remove="gridpng.png" />
 
 		<None Remove="infopng.png" />
@@ -26,6 +30,8 @@
 
 		<None Remove="Resources\150890470_564279167877961_2533995434875167959_n.png" />
 		<None Remove="Resources\backsq.png" />
+		<None Remove="Resources\Credits.png" />
+		<None Remove="Resources\Creditsbutton.png" />
 		<None Remove="Resources\stardewborder.png" />
 		<None Remove="Resources\stardewborderdark.png" />
 		<None Remove="Resources\stardewborderroll.png" />
@@ -39,6 +45,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Resource Include="Resources\Credits.png" />
+		<Resource Include="Resources\Creditsbutton.png" />
 		<Resource Include="Resources\gridpng.png" />
 		<Resource Include="Resources\infopng.png" />
 		<Resource Include="Resources\Legend.png" />

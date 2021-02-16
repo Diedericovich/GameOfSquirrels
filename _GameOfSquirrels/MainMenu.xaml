@@ -34,7 +34,7 @@
                             Stretch="Fill" />
             </Border.Background>
         </Border>
-        <Button Grid.Row="1"
+        <Button Style="{DynamicResource ButtonStyle}" Grid.Row="1"
                 Grid.Column="2"
                 Margin="40,40,45,10"
                 BorderBrush="#00000000"

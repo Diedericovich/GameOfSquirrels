@@ -2,7 +2,7 @@
 
 namespace _GameOfSquirrels
 {
-    public class Pawn : IPawn
+    public class Pawn : IPawn 
     {
         private int _locationX;
         public int LastRoll { get; set; }
@@ -71,6 +71,26 @@ namespace _GameOfSquirrels
         {
             LocationX += x;
             LocationY += y;
+        }
+
+        public void MoveUp()
+        {
+            LocationY --;
+        }
+
+        public void MoveDown()
+        {
+            LocationY ++;
+        }
+
+        public void MoveLeft()
+        {
+            LocationX --;
+        }
+
+        public void MoveRight()
+        {
+            LocationX++;
         }
 
         protected void OnPropertyChanged(string name = null)

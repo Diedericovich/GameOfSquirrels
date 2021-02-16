@@ -132,7 +132,7 @@ namespace _GameOfSquirrels
             {
                 var roll = _dice.RollDice(1, 7);
                 var roll2 = _dice.RollDice(1, 7);
-                LastNumberRolled = roll + roll2;
+                LastNumberRolled = roll+roll2;
                 CheckForDoubleThrees(roll, roll2);
                 CheckForDoubleSixes(roll, roll2);
             }
@@ -178,7 +178,7 @@ namespace _GameOfSquirrels
 
         public async void MovePawn(int roll, IPawn pawn)
         {
-            for (var i = 1; i < roll + 1; i++)
+            for (var i = 1; i < roll +1 ; i++)
             {
                 if (i == roll)
                 {
@@ -250,7 +250,6 @@ namespace _GameOfSquirrels
             pawn.GoingRight = true;
             pawn.LocationX = 2;
             pawn.LocationY = 6;
-            pawn.Move(0, 0);
         }
 
         private void InteractWithBeartrap(IPawn pawn)
@@ -287,7 +286,6 @@ namespace _GameOfSquirrels
             pawn.GoingRight = true;
             pawn.LocationX = 0;
             pawn.LocationY = 0;
-            pawn.Move(0, 0);
         }
 
         private void InteractWithBridge(IPawn pawn)
@@ -301,30 +299,28 @@ namespace _GameOfSquirrels
             if (pawn.LocationX == 0 && pawn.LocationY == 0)
             {
                 pawn.GoingRight = true;
-                pawn.Move(1, 0);
+                pawn.MoveRight();
             }
-            if (pawn.IsReversed)
+            else if (pawn.IsReversed)
             {
                 MoveBackwards(pawn);
-
             }
             else
             {
                 MoveForward(pawn);
             }
-
         }
 
         private void MoveBackwards(IPawn pawn)
         {
             if (pawn.LocationX == _boardWidth - 1 && pawn.GoingRight)
             {
-                pawn.Move(0, -1);
+                pawn.MoveUp();
                 pawn.GoingRight = false;
             }
             else if (pawn.LocationX == 0 && !pawn.GoingRight)
             {
-                pawn.Move(0, -1);
+                pawn.MoveUp();
                 pawn.GoingRight = true;
             }
             else
@@ -339,30 +335,30 @@ namespace _GameOfSquirrels
             {
                 if (pawn.LocationX == _boardWidth - 1)
                 {
-                    pawn.Move(0, 1);
+                    pawn.MoveDown();
                     pawn.GoingRight = false;
                 }
                 else
                 {
-                    pawn.Move(1, 0);
+                    pawn.MoveRight();
                 }
             }
             else
             {
                 if (pawn.LocationX == 0 && pawn.LocationY == _boardHeight - 1)
                 {
-                    pawn.Move(1, 0);
+                    pawn.MoveRight();
                     pawn.GoingRight = true;
                     pawn.IsReversed = true;
                 }
                 else if (pawn.LocationX == 0)
                 {
-                    pawn.Move(0, 1);
+                    pawn.MoveDown();
                     pawn.GoingRight = true;
                 }
                 else
                 {
-                    pawn.Move(-1, 0);
+                    pawn.MoveLeft();
                 }
             }
         }
