@@ -18,9 +18,13 @@ namespace _GameOfSquirrels
         event PropertyChangedEventHandler PropertyChanged;
 
         void Move(int x, int y);
+
         void MoveDown();
+
         void MoveLeft();
+
         void MoveRight();
+
         void MoveUp();
     }
 }

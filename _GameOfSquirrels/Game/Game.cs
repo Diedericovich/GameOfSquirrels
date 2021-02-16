@@ -72,9 +72,6 @@ namespace _GameOfSquirrels
         private void GenerateBoard()
         {
             _board = new Board(GridGame, _boardHeight, _boardWidth);
-            var img = new BitmapImage(new Uri(@"https://cdn.discordapp.com/attachments/809042663969652756/810496380548284476/Backgroundtest_-_demo1.png"));
-            var image = new ImageBrush { ImageSource = img };
-            GridGame.Background = image;
         }
 
         private void GeneratePawns(int players)
@@ -132,7 +129,7 @@ namespace _GameOfSquirrels
             {
                 var roll = _dice.RollDice(1, 7);
                 var roll2 = _dice.RollDice(1, 7);
-                LastNumberRolled = roll+roll2;
+                LastNumberRolled = roll + roll2;
                 CheckForDoubleThrees(roll, roll2);
                 CheckForDoubleSixes(roll, roll2);
             }
@@ -178,7 +175,7 @@ namespace _GameOfSquirrels
 
         public async void MovePawn(int roll, IPawn pawn)
         {
-            for (var i = 1; i < roll +1 ; i++)
+            for (var i = 1; i < roll + 1; i++)
             {
                 if (i == roll)
                 {
@@ -370,6 +367,7 @@ namespace _GameOfSquirrels
 
         private void EndGame()
         {
+            //end game
         }
 
         protected void OnPropertyChanged(string name = null)

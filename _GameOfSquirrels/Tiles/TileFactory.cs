@@ -24,6 +24,7 @@ namespace _GameOfSquirrels
                 new CatapultTile(2, 4),
                 new SquirrelTile(5, 4),
                 new SquirrelTile(1, 5),
+                new TeleportTile(3,5),
                 new BridgeTile(6, 5),
                 new BridgeTile(4, 6),
                 new EndGameTile(0, 7),

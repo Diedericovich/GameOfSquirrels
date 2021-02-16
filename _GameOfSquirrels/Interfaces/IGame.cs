@@ -13,7 +13,9 @@ namespace _GameOfSquirrels
         event PropertyChangedEventHandler PropertyChanged;
 
         void DoTurn();
+
         void MovePawn(int roll, IPawn pawn);
+
         void StartGame(Grid grid, int players);
     }
 }

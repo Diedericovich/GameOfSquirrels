@@ -16,9 +16,15 @@
 
 	<ItemGroup>
 
+		<None Remove="Backgroundtest - demo3.png" />
+
 		<None Remove="Credits.png" />
 
 		<None Remove="Creditsbutton.png" />
+
+		<None Remove="Exporter3 - Squirrelgame BACKGROUND.png" />
+
+		<None Remove="Exporter3 - Squirrelgame OVERLAY.png" />
 
 		<None Remove="gridpng.png" />
 
@@ -45,6 +51,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Resource Include="Resources\Exporter3 - Squirrelgame BACKGROUND.png" />
+		<Resource Include="Resources\Exporter3 - Squirrelgame OVERLAY.png" />
+		<Resource Include="Resources\Backgroundtest - demo3.png" />
 		<Resource Include="Resources\Credits.png" />
 		<Resource Include="Resources\Creditsbutton.png" />
 		<Resource Include="Resources\gridpng.png" />

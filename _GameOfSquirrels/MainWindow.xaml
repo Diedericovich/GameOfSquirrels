@@ -6,8 +6,8 @@
         Title="MainWindow"
         Width="1200"
         Height="900"
-        mc:Ignorable="d"
-        Background="#FFF0AF6B">
+        Background="#FFF0AF6B"
+        mc:Ignorable="d">
     <Grid x:Name="GridOuter">
         <!--#region Grid Columns & Rows-->
         <Grid.ColumnDefinitions>
@@ -29,18 +29,21 @@
               Grid.Row="1"
               Grid.RowSpan="3"
               Grid.Column="1">
+            <Grid.Background>
+                <ImageBrush ImageSource="/Resources/Exporter3 - Squirrelgame BACKGROUND.png" />
+            </Grid.Background>
         </Grid>
         <Canvas x:Name="Overlay"
                 Grid.Row="1"
                 Grid.RowSpan="3"
                 Grid.Column="1">
             <Canvas.Background>
-                <ImageBrush ImageSource="/Overlay test.png" />
+                <ImageBrush ImageSource="/Resources/Exporter3 - Squirrelgame OVERLAY.png" />
             </Canvas.Background>
         </Canvas>
         <Grid Grid.Row="1"
-              Grid.Column="3"
-              Grid.RowSpan="3">
+              Grid.RowSpan="3"
+              Grid.Column="3">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.4*" />
                 <RowDefinition Height="0.03*" />
@@ -59,11 +62,10 @@
                 <TextBlock x:Name="lblDiceResult"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
-                           TextWrapping="Wrap"
                            FontSize="20"
-                           Text="{Binding LastNumberRolled, StringFormat='Number rolled: {0}', FallbackValue='Number rolled: '}" />
+                           Text="{Binding LastNumberRolled, StringFormat='Number rolled: {0}', FallbackValue='Number rolled: '}"
+                           TextWrapping="Wrap" />
             </Border>
-
             <Border Grid.Row="2">
                 <Border.Background>
                     <ImageBrush ImageSource="/Resources/stardewborderdark.png"
@@ -72,9 +74,9 @@
                 <TextBlock x:Name="lblCurrentPlayer"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
-                           TextWrapping="Wrap"
                            FontSize="20"
-                           Text="{Binding CurrentPlayer, StringFormat='Current player: {0}', FallbackValue='Current player: '}" />
+                           Text="{Binding CurrentPlayer, StringFormat='Current player: {0}', FallbackValue='Current player: '}"
+                           TextWrapping="Wrap" />
             </Border>
             <Border Grid.Row="0">
                 <Border.Background>
@@ -82,29 +84,30 @@
                                 Stretch="Fill" />
                 </Border.Background>
                 <TextBlock x:Name="lblCurrentRound"
-                           FontSize="20"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
-                           TextWrapping="Wrap"
-                           Text="{Binding RoundCounter, StringFormat='Current round: {0}', FallbackValue='Current round: '}"></TextBlock>
+                           FontSize="20"
+                           Text="{Binding RoundCounter, StringFormat='Current round: {0}', FallbackValue='Current round: '}"
+                           TextWrapping="Wrap" />
             </Border>
             <ListView x:Name="lvPlayers"
                       Grid.Row="6"
                       HorizontalAlignment="Center"
+                      Background="Transparent"
                       BorderThickness="0"
-                      ItemTemplate="{StaticResource TempDataTemplate}"
-                      Background="Transparent">
+                      ItemTemplate="{StaticResource TempDataTemplate}">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <StackPanel Orientation="Vertical"></StackPanel>
+                        <StackPanel Orientation="Vertical" />
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
             </ListView>
-            <Button Style="{DynamicResource ButtonStyle}" Grid.Row="7"
+            <Button Grid.Row="7"
                     MaxWidth="300"
                     MaxHeight="100"
+                    BorderBrush="#00707070"
                     Click="TestButtonClick"
-                    BorderBrush="#00707070">
+                    Style="{DynamicResource ButtonStyle}">
                 <Button.Background>
                     <ImageBrush ImageSource="/Resources/stardewborderroll.png" />
                 </Button.Background>
@@ -114,30 +117,30 @@
                     Grid.Column="1"
                     Orientation="Horizontal">
             <Button x:Name="btnToggleGrid"
-                    Style="{DynamicResource ButtonStyle}"
-                    Click="ToggleGrid"
                     Width="35"
                     Height="35"
-                    Margin="0,0,15,0">
+                    Margin="0,0,15,0"
+                    Click="ToggleGrid"
+                    Style="{DynamicResource ButtonStyle}">
                 <Button.Background>
                     <ImageBrush ImageSource="/Resources/gridpng.png" />
                 </Button.Background>
             </Button>
             <Button x:Name="btnToggleLegend"
-                    Style="{DynamicResource ButtonStyle}"
-                    Click="ToggleLegend"
                     Width="35"
                     Height="35"
-                    Margin="0,0,15,0">
+                    Margin="0,0,15,0"
+                    Click="ToggleLegend"
+                    Style="{DynamicResource ButtonStyle}">
                 <Button.Background>
                     <ImageBrush ImageSource="/Resources/infopng.png" />
                 </Button.Background>
             </Button>
             <Button x:Name="btnToggleCredits"
-                    Style="{DynamicResource ButtonStyle}"
-                    Click="ToggleCredits"
                     Width="35"
-                    Height="35">
+                    Height="35"
+                    Click="ToggleCredits"
+                    Style="{DynamicResource ButtonStyle}">
                 <Button.Background>
                     <ImageBrush ImageSource="/Resources/Creditsbutton.png" />
                 </Button.Background>
@@ -147,28 +150,26 @@
                 Grid.Row="1"
                 Grid.RowSpan="3"
                 Grid.Column="1"
-                Visibility="Collapsed"
-                Background="#BFAB5D3E">
-            <Image Width="650"
-                   Height="650"
-                   Canvas.Left="23"
+                Background="#BFAB5D3E"
+                Visibility="Collapsed">
+            <Image Canvas.Left="23"
                    Canvas.Top="59"
-                   Source="/Resources/Legend.png">
-            </Image>
+                   Width="650"
+                   Height="650"
+                   Source="/Resources/Legend.png" />
         </Canvas>
         <Canvas x:Name="CreditsOverlay"
                 Grid.Row="1"
                 Grid.RowSpan="3"
                 Grid.Column="1"
-                Visibility="Collapsed"
-                Background="#BFAB5D3E">
-            <Image Width="650"
-                   Height="300"
-                   Canvas.Left="23"
+                Background="#BFAB5D3E"
+                Visibility="Collapsed">
+            <Image Canvas.Left="23"
                    Canvas.Top="234"
+                   Width="650"
+                   Height="300"
                    Source="/Resources/Credits.png"
-                   Stretch="Fill">
-            </Image>
+                   Stretch="Fill" />
         </Canvas>
     </Grid>
 </Window>
