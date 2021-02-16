@@ -5,7 +5,7 @@
         public TunnelTile(int locationX, int locationY)
             : base(locationX, locationY)
         {
-            Image= "https://i.ibb.co/8bxVnVD/tunneltile.png";
+            Image = "https://i.ibb.co/8bxVnVD/tunneltile.png";
         }
 
         public override string GetInteractionMessage()

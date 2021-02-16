@@ -6,12 +6,12 @@ namespace GameOfSquirrels.Test
 {
     internal class PawnTest
     {
-        public Pawn pawn;
+        public Pawn Pawn;
 
         [SetUp]
         public void Setup()
         {
-            pawn = new Pawn(0, 0);
+            Pawn = new Pawn(0, 0);
         }
 
         [TestCase(3, 3)]
@@ -22,10 +22,10 @@ namespace GameOfSquirrels.Test
             // ARRANGE
 
             // ACT
-            pawn.Move(move, 0);
+            Pawn.Move(move, 0);
 
             // ASSERT
-            Assert.AreEqual(pawn.LocationX, expectedLocation);
+            Assert.AreEqual(Pawn.LocationX, expectedLocation);
         }
     }
 }

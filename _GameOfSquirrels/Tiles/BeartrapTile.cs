@@ -1,6 +1,4 @@
-﻿using System.Windows;
-
-namespace _GameOfSquirrels
+﻿namespace _GameOfSquirrels
 {
     public class BearTrapTile : Tile
     {

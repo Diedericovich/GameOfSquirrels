@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,8 +21,8 @@ namespace _GameOfSquirrels
         private Board _board;
         public ObservableCollection<IPawn> PlayerList = new ObservableCollection<IPawn>();
         public List<ITile> BoardTiles = new List<ITile>();
-        public int BoardWidth;
-        public int BoardHeight;
+        private readonly int _boardWidth;
+        private readonly int _boardHeight;
         public bool PlayerFinishedMoving;
         private int _roundCounter;
 
@@ -55,8 +56,8 @@ namespace _GameOfSquirrels
 
         public Game()
         {
-            BoardWidth = 8;
-            BoardHeight = 8;
+            _boardWidth = 8;
+            _boardHeight = 8;
             CurrentPlayer = 0;
         }
 
@@ -68,9 +69,9 @@ namespace _GameOfSquirrels
             GeneratePawns(players);
         }
 
-        public void GenerateBoard()
+        private void GenerateBoard()
         {
-            _board = new Board(GridGame, BoardHeight, BoardWidth);
+            _board = new Board(GridGame, _boardHeight, _boardWidth);
             var img = new BitmapImage(new Uri(@"https://cdn.discordapp.com/attachments/809042663969652756/810496380548284476/Backgroundtest_-_demo1.png"));
             var image = new ImageBrush { ImageSource = img };
             GridGame.Background = image;
@@ -86,7 +87,7 @@ namespace _GameOfSquirrels
         private void GenerateTiles()
         {
             var tileFactory = new TileFactory();
-            BoardTiles = tileFactory.CreateTiles(BoardHeight, BoardWidth);
+            BoardTiles = tileFactory.CreateTiles(_boardHeight, _boardWidth);
             foreach (var tile in BoardTiles)
             {
                 Border border = new Border() { Height = 60, Width = 35 };
@@ -99,7 +100,7 @@ namespace _GameOfSquirrels
             }
         }
 
-        public void PlacePawnsOnBoard()
+        private void PlacePawnsOnBoard()
         {
             foreach (var item in PlayerList)
             {
@@ -176,47 +177,44 @@ namespace _GameOfSquirrels
             }
         }
 
-        public void CheckForSpecialTile(IPawn pawn)
+        private void CheckForSpecialTile(IPawn pawn)
         {
-            foreach (var tile in BoardTiles)
+            foreach (var tile in BoardTiles.Where(tile => pawn.LocationX == tile.LocationX && pawn.LocationY == tile.LocationY))
             {
-                if (pawn.LocationX == tile.LocationX && pawn.LocationY == tile.LocationY)
+                MessageBox.Show(tile.GetInteractionMessage());
+                switch (tile)
                 {
-                    MessageBox.Show(tile.GetInteractionMessage());
-                    switch (tile)
-                    {
-                        case BridgeTile:
-                            InteractWithBridge(pawn);
-                            break;
+                    case BridgeTile:
+                        InteractWithBridge(pawn);
+                        break;
 
-                        case FireTile:
-                            InteractWithFire(pawn);
-                            break;
+                    case FireTile:
+                        InteractWithFire(pawn);
+                        break;
 
-                        case SquirrelTile:
-                            InteractWithSquirrel(pawn);
-                            break;
+                    case SquirrelTile:
+                        InteractWithSquirrel(pawn);
+                        break;
 
-                        case CatapultTile:
-                            InteractWithCatapult(pawn);
-                            break;
+                    case CatapultTile:
+                        InteractWithCatapult(pawn);
+                        break;
 
-                        case EndGameTile:
-                            InteractWithEndGame(pawn);
-                            break;
+                    case EndGameTile:
+                        InteractWithEndGame(pawn);
+                        break;
 
-                        case TeleportTile:
-                            InteractWithTeleport(pawn);
-                            break;
+                    case TeleportTile:
+                        InteractWithTeleport(pawn);
+                        break;
 
-                        case BearTrapTile:
-                            InteractWithBeartrap(pawn);
-                            break;
+                    case BearTrapTile:
+                        InteractWithBeartrap(pawn);
+                        break;
 
-                        case TunnelTile:
-                            InteractWithTunnel(pawn);
-                            break;
-                    }
+                    case TunnelTile:
+                        InteractWithTunnel(pawn);
+                        break;
                 }
             }
         }
@@ -274,7 +272,7 @@ namespace _GameOfSquirrels
 
         private void MoveOnBoard(IPawn pawn)
         {
-            if (pawn.LocationX == BoardWidth - 1 && pawn.IsReversed && pawn.GoingRight) // Right turn reverse
+            if (pawn.LocationX == _boardWidth - 1 && pawn.IsReversed && pawn.GoingRight) // Right turn reverse
             {
                 pawn.Move(0, -1);
                 pawn.GoingRight = false;
@@ -284,7 +282,7 @@ namespace _GameOfSquirrels
                 pawn.Move(0, -1);
                 pawn.GoingRight = true;
             }
-            else if (pawn.LocationX == BoardWidth - 1 && pawn.GoingRight) // Right turn
+            else if (pawn.LocationX == _boardWidth - 1 && pawn.GoingRight) // Right turn
             {
                 pawn.Move(0, 1);
                 pawn.GoingRight = false;
@@ -297,7 +295,7 @@ namespace _GameOfSquirrels
                         pawn.Move(1, 0);
                         break;
                     //Go past the end
-                    case 0 when pawn.LocationY == BoardHeight - 1:
+                    case 0 when pawn.LocationY == _boardHeight - 1:
                         pawn.Move(1, 0);
                         pawn.GoingRight = true;
                         pawn.IsReversed = true;
@@ -324,7 +322,7 @@ namespace _GameOfSquirrels
                 }
         }
 
-        public void CheckPlayerDirection(IPawn pawn)
+        private void CheckPlayerDirection(IPawn pawn)
         {
             pawn.GoingRight = pawn.LocationY % 2 == 0;
         }

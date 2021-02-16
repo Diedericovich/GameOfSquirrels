@@ -4,19 +4,15 @@ namespace _GameOfSquirrels
 {
     public class Board
     {
-        public Grid BoardGrid;
+        private Grid _boardGrid;
 
-        public int MinBoardHeight { get; set; }
+        private int MaxBoardHeight { get; set; }
 
-        public int MinBoardWidth { get; set; }
-
-        public int MaxBoardHeight { get; set; }
-
-        public int MaxBoardWidth { get; set; }
+        private int MaxBoardWidth { get; set; }
 
         public Board(Grid grid, int height, int width)
         {
-            BoardGrid = grid;
+            _boardGrid = grid;
             MaxBoardHeight = height;
             MaxBoardWidth = width;
             SetSize();
@@ -26,14 +22,12 @@ namespace _GameOfSquirrels
         {
             for (var i = 0; i < MaxBoardWidth; i++)
             {
-                BoardGrid.ColumnDefinitions.Add(new ColumnDefinition());
-                //BoardGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(MaxBoardWidth) });
+                _boardGrid.ColumnDefinitions.Add(new ColumnDefinition());
             }
 
             for (var i = 0; i < MaxBoardHeight; i++)
             {
-                BoardGrid.RowDefinitions.Add(new RowDefinition());
-                //BoardGrid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(MaxBoardWidth) });
+                _boardGrid.RowDefinitions.Add(new RowDefinition());
             }
         }
     }

@@ -1,7 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-
-namespace _GameOfSquirrels
+﻿namespace _GameOfSquirrels
 {
     internal class EndGameTile : Tile
     {

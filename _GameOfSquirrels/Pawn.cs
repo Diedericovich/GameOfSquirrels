@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using System.Windows.Shapes;
 
 namespace _GameOfSquirrels
 {
@@ -50,8 +49,10 @@ namespace _GameOfSquirrels
                 OnPropertyChanged("LocationY");
             }
         }
+
         public string Image { get; set; }
         public double Size { get; set; }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public Pawn(int locationX, int locationY)

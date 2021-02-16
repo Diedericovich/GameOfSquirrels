@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 
 namespace _GameOfSquirrels
 {
@@ -29,12 +28,15 @@ namespace _GameOfSquirrels
                     case 4:
                         playerList[4].Image = "https://i.ibb.co/h2PZjRh/squirrelpurple.png";
                         break;
+
                     case 5:
                         playerList[5].Image = "https://i.ibb.co/86C440j/squirrelyellow.png";
                         break;
+
                     case 6:
                         playerList[6].Image = "https://i.ibb.co/0DPX4Kx/squirrelpink.png";
                         break;
+
                     default:
                         break;
                 }

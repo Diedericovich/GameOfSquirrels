@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Windows.Controls;
 
 using _GameOfSquirrels;
 
@@ -9,15 +8,14 @@ namespace GameOfSquirrels.Test
 {
     public class Tests
     {
-        public Game game;
-        public IPawn pawn;
-        public List<IPawn> playerList;
-
+        public Game Game;
+        public IPawn Pawn;
+        public List<IPawn> PlayerList;
 
         [SetUp]
         public void Setup()
         {
-            game = new Game( );
+            Game = new Game();
         }
 
         [TestCase(1, 2)]
@@ -27,26 +25,26 @@ namespace GameOfSquirrels.Test
         public void MovePawn_WhenCalled_IsPlayerInCorrectLocation(int roll, int expectedLocationX)
         {
             //Arrange
-            pawn = new Pawn(0, 0);
-            game.LastNumberRolled = roll;
-            game.BoardTiles.Add(new BridgeTile(1, 0));
-            game.BoardTiles.Add(new SquirrelTile(2, 0));
-            game.BoardTiles.Add(new CatapultTile(5, 0));
-            game.BoardTiles.Add(new SquirrelTile(6, 1));
+            Pawn = new Pawn(0, 0);
+            Game.LastNumberRolled = roll;
+            Game.BoardTiles.Add(new BridgeTile(1, 0));
+            Game.BoardTiles.Add(new SquirrelTile(2, 0));
+            Game.BoardTiles.Add(new CatapultTile(5, 0));
+            Game.BoardTiles.Add(new SquirrelTile(6, 1));
 
             //Act
-            game.MovePawn(roll, pawn);
+            Game.MovePawn(roll, Pawn);
             //Assert
-            Assert.AreEqual(expectedLocationX, pawn.LocationX);
+            Assert.AreEqual(expectedLocationX, Pawn.LocationX);
         }
 
         [Test]
         public void MovePawn_WhenLandingOnBearTrap_IsPlayerSkipTurnTrue()
         {
-            pawn = new Pawn(0, 0);
-            game.BoardTiles.Add(new BearTrapTile(1, 0));
-            game.MovePawn(1, pawn);
-            Assert.IsTrue(pawn.IsSkippingNextTurn);
+            Pawn = new Pawn(0, 0);
+            Game.BoardTiles.Add(new BearTrapTile(1, 0));
+            Game.MovePawn(1, Pawn);
+            Assert.IsTrue(Pawn.IsSkippingNextTurn);
         }
     }
 }
