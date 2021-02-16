@@ -8,13 +8,11 @@ namespace _GameOfSquirrels
         public FireTile(int locationX, int locationY)
             : base(locationX, locationY)
         {
-            TileBorder = new Border();
         }
 
-        public override int GetInteraction()
+        public override string GetInteractionMessage()
         {
-            MessageBox.Show("Fire! Move back to the start!");
-            return 0;
+            return "Fire! Move back to the start!";
         }
     }
 }

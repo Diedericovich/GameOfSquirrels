@@ -8,15 +8,33 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="6906qzxo55711.png" />
+    <None Remove="150890470_564279167877961_2533995434875167959_n.png" />
+    <None Remove="backsq.png" />
     <None Remove="btnRoll.png" />
-    <None Remove="TileGrasstestborder.png" />
+    <None Remove="stardewborder.png" />
+    <None Remove="stardewborderdark.png" />
+    <None Remove="stardewborderroll.png" />
+    <None Remove="stardewbutton.png" />
+    <None Remove="stardewpanel.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="6906qzxo55711.png" />
+    <PackageReference Include="XamlAnimatedGif" Version="1.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="150890470_564279167877961_2533995434875167959_n.png" />
+    <Resource Include="backsq.png" />
     <Resource Include="btnRoll.png" />
-    <Resource Include="TileGrasstestborder.png" />
+    <Resource Include="stardewborder.png" />
+    <Resource Include="stardewborderdark.png" />
+    <Resource Include="stardewborderroll.png" />
+    <Resource Include="stardewbutton.png" />
+    <Resource Include="stardewpanel.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Images\" />
   </ItemGroup>
 
 </Project>

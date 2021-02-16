@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
@@ -15,8 +18,8 @@ namespace _GameOfSquirrels
 
         private readonly Dice _dice = new Dice();
         private Board _board;
-        public List<IPawn> PlayerList;
-        public List<ITile> BoardTiles;
+        public ObservableCollection<IPawn> PlayerList = new ObservableCollection<IPawn>();
+        public List<ITile> BoardTiles = new List<ITile>();
         public int BoardWidth;
         public int BoardHeight;
         public bool PlayerFinishedMoving;
@@ -50,29 +53,19 @@ namespace _GameOfSquirrels
             set { _currentPlayer = value; OnPropertyChanged("CurrentPlayer"); }
         }
 
-        public Game(Grid gridGame)
+        public Game()
         {
             BoardWidth = 8;
             BoardHeight = 8;
-            GridGame = gridGame;
-            GridGame.ShowGridLines = true;
             CurrentPlayer = 0;
         }
 
-        public void UpdatePawnLocation()
+        public void StartGame(Grid grid, int players)
         {
-            foreach (var item in PlayerList)
-            {
-                {
-                    var ellipse = new Ellipse() { Height = 50, Width = 50, Margin = new System.Windows.Thickness(0, 0, 0, 15) };
-                    var img = new BitmapImage(new Uri(@"https://pngimg.com/uploads/squirrel/squirrel_PNG15804.png"));
-                    var image = new ImageBrush { ImageSource = img, Stretch = Stretch.Fill };
-                    ellipse.Fill = image;
-                    GridGame.Children.Add(ellipse);
-                    Grid.SetColumn(ellipse, item.LocationX);
-                    Grid.SetRow(ellipse, item.LocationY);
-                }
-            }
+            GridGame = grid;
+            GenerateBoard();
+            GenerateTiles();
+            GeneratePawns(players);
         }
 
         public void GenerateBoard()
@@ -81,14 +74,13 @@ namespace _GameOfSquirrels
             var img = new BitmapImage(new Uri(@"https://cdn.discordapp.com/attachments/809042663969652756/810496380548284476/Backgroundtest_-_demo1.png"));
             var image = new ImageBrush { ImageSource = img };
             GridGame.Background = image;
-            GenerateTiles();
-            GeneratePawns();
         }
 
-        private void GeneratePawns()
+        private void GeneratePawns(int players)
         {
             var pawnFactory = new PawnFactory();
-            PlayerList = pawnFactory.CreatePawns(2);
+            PlayerList = pawnFactory.CreatePawns(players);
+            PlacePawnsOnBoard();
         }
 
         private void GenerateTiles()
@@ -97,16 +89,43 @@ namespace _GameOfSquirrels
             BoardTiles = tileFactory.CreateTiles(BoardHeight, BoardWidth);
             foreach (var tile in BoardTiles)
             {
-                GridGame.Children.Add(tile.TileBorder);
-                Grid.SetColumn(tile.TileBorder, tile.LocationX);
-                Grid.SetRow(tile.TileBorder, tile.LocationY);
+                Border border = new Border() { Height = 60, Width = 35 };
+                var img = new BitmapImage(new Uri(tile.Image));
+                var image = new ImageBrush { ImageSource = img, Stretch = Stretch.Fill };
+                border.Background = image;
+                Grid.SetColumn(border, tile.LocationX);
+                Grid.SetRow(border, tile.LocationY);
+                GridGame.Children.Add(border);
+            }
+        }
+
+        public void PlacePawnsOnBoard()
+        {
+            foreach (var item in PlayerList)
+            {
+                var square = new Rectangle() { Margin = new Thickness(0, 0, 0, 15) };
+                var img = new BitmapImage(new Uri(item.Image));
+                var image = new ImageBrush { ImageSource = img, Stretch = Stretch.Fill };
+                square.Fill = image;
+
+                Binding bindingY = new Binding("LocationY");
+                bindingY.Source = item;
+                square.SetBinding(Grid.RowProperty, bindingY);
+                Binding bindingX = new Binding("LocationX");
+                bindingX.Source = item;
+                square.SetBinding(Grid.ColumnProperty, bindingX);
+                Binding bindingSize = new Binding("Size");
+                bindingSize.Source = item;
+                square.SetBinding(Rectangle.HeightProperty, bindingSize);
+                square.SetBinding(Rectangle.WidthProperty, bindingSize);
+                GridGame.Children.Add(square);
             }
         }
 
         public void DoTurn()
         {
             PlayerList[CurrentPlayer].IsReversed = false;
-            CheckPlayerDirection();
+            CheckPlayerDirection(PlayerList[CurrentPlayer]);
             PlayerFinishedMoving = false;
 
             if (!PlayerList[CurrentPlayer].IsSkippingNextTurn)
@@ -115,7 +134,7 @@ namespace _GameOfSquirrels
                 var roll = dice1.RollDice(1, 7);
                 var roll2 = dice1.RollDice(1, 7);
                 LastNumberRolled = roll + roll2;
-                MovePawn(LastNumberRolled);
+                MovePawn(LastNumberRolled, PlayerList[CurrentPlayer]);
             }
             else
             {
@@ -127,22 +146,10 @@ namespace _GameOfSquirrels
                 }
                 PlayerFinishedMoving = true;
             }
-
             NextTurn();
         }
 
-        public void ClearEllipsesFromGrid()
-        {
-            for (int i = 0; i < GridGame.Children.Count; i++)
-            {
-                if (GridGame.Children[i] is Ellipse)
-                {
-                    GridGame.Children.RemoveAt(i);
-                }
-            }
-        }
-
-        public void MovePawn(int roll)
+        public async void MovePawn(int roll, IPawn pawn)
         {
             for (var i = 1; i < roll + 1; i++)
             {
@@ -150,14 +157,12 @@ namespace _GameOfSquirrels
                 {
                     PlayerFinishedMoving = true;
                 }
-
-                MoveOnBoard();
-                ClearEllipsesFromGrid();
+                await Task.Delay(300);
+                MoveOnBoard(pawn);
             }
             if (PlayerFinishedMoving)
             {
-                CheckForSpecialTile();
-                UpdatePawnLocation();
+                CheckForSpecialTile(pawn);
             }
         }
 
@@ -171,147 +176,147 @@ namespace _GameOfSquirrels
             }
         }
 
-        public void CheckForSpecialTile()
+        public void CheckForSpecialTile(IPawn pawn)
         {
             foreach (var tile in BoardTiles)
             {
-                if (PlayerList[CurrentPlayer].LocationX == tile.LocationX && PlayerList[CurrentPlayer].LocationY == tile.LocationY)
+                if (pawn.LocationX == tile.LocationX && pawn.LocationY == tile.LocationY)
                 {
-                    tile.GetInteraction();
+                    MessageBox.Show(tile.GetInteractionMessage());
                     switch (tile)
                     {
                         case BridgeTile:
-                            InteractWithBridge();
+                            InteractWithBridge(pawn);
                             break;
 
                         case FireTile:
-                            InteractWithFire();
+                            InteractWithFire(pawn);
                             break;
 
                         case SquirrelTile:
-                            InteractWithSquirrel();
+                            InteractWithSquirrel(pawn);
                             break;
 
                         case CatapultTile:
-                            InteractWithCatapult();
+                            InteractWithCatapult(pawn);
                             break;
 
                         case EndGameTile:
-                            InteractWithEndGame();
+                            InteractWithEndGame(pawn);
                             break;
 
                         case TeleportTile:
-                            InteractWithTeleport();
+                            InteractWithTeleport(pawn);
                             break;
 
                         case BearTrapTile:
-                            InteractWithBeartrap();
+                            InteractWithBeartrap(pawn);
                             break;
 
                         case TunnelTile:
-                            InteractWithTunnel();
+                            InteractWithTunnel(pawn);
                             break;
                     }
                 }
             }
         }
 
-        private void InteractWithTunnel()
+        private void InteractWithTunnel(IPawn pawn)
         {
-            PlayerList[CurrentPlayer].GoingRight = true;
-            PlayerList[CurrentPlayer].LocationX = 2;
-            PlayerList[CurrentPlayer].LocationY = 6;
-            PlayerList[CurrentPlayer].Move(0, 0);
+            pawn.GoingRight = true;
+            pawn.LocationX = 2;
+            pawn.LocationY = 6;
+            pawn.Move(0, 0);
         }
 
-        private void InteractWithBeartrap()
+        private void InteractWithBeartrap(IPawn pawn)
         {
-            PlayerList[CurrentPlayer].TurnsToSkip = 3;
-            PlayerList[CurrentPlayer].IsSkippingNextTurn = true;
+            pawn.TurnsToSkip = 3;
+            pawn.IsSkippingNextTurn = true;
         }
 
-        private void InteractWithTeleport()
+        private void InteractWithTeleport(IPawn pawn)
         {
-            PlayerList[CurrentPlayer].Move(_dice.RollDice(0, 8), _dice.RollDice(0, 8));
-            CheckPlayerDirection();
+            pawn.Move(_dice.RollDice(0, 8), _dice.RollDice(0, 8));
+            CheckPlayerDirection(pawn);
         }
 
-        private void InteractWithEndGame()
+        private void InteractWithEndGame(IPawn pawn)
         {
             EndGame();
         }
 
-        private void InteractWithCatapult()
+        private void InteractWithCatapult(IPawn pawn)
         {
             PlayerFinishedMoving = false;
-            MovePawn(3);
+            MovePawn(3, pawn);
         }
 
-        private void InteractWithSquirrel()
+        private void InteractWithSquirrel(IPawn pawn)
         {
             PlayerFinishedMoving = false;
-            MovePawn(LastNumberRolled);
+            MovePawn(LastNumberRolled, pawn);
         }
 
-        private void InteractWithFire()
+        private void InteractWithFire(IPawn pawn)
         {
-            PlayerList[CurrentPlayer].GoingRight = true;
-            PlayerList[CurrentPlayer].LocationX = 0;
-            PlayerList[CurrentPlayer].LocationY = 0;
-            PlayerList[CurrentPlayer].Move(0, 0);
+            pawn.GoingRight = true;
+            pawn.LocationX = 0;
+            pawn.LocationY = 0;
+            pawn.Move(0, 0);
         }
 
-        private void InteractWithBridge()
+        private void InteractWithBridge(IPawn pawn)
         {
-            PlayerList[CurrentPlayer].Move(1, 1);
-            PlayerList[CurrentPlayer].GoingRight = !PlayerList[CurrentPlayer].GoingRight;
+            pawn.Move(1, 1);
+            pawn.GoingRight = !pawn.GoingRight;
         }
 
-        private void MoveOnBoard()
+        private void MoveOnBoard(IPawn pawn)
         {
-            if (PlayerList[CurrentPlayer].LocationX == BoardWidth - 1 && PlayerList[CurrentPlayer].IsReversed && PlayerList[CurrentPlayer].GoingRight) // Right turn reverse
+            if (pawn.LocationX == BoardWidth - 1 && pawn.IsReversed && pawn.GoingRight) // Right turn reverse
             {
-                PlayerList[CurrentPlayer].Move(0, -1);
-                PlayerList[CurrentPlayer].GoingRight = false;
+                pawn.Move(0, -1);
+                pawn.GoingRight = false;
             }
-            else if (PlayerList[CurrentPlayer].LocationX == 0 && PlayerList[CurrentPlayer].IsReversed && !PlayerList[CurrentPlayer].GoingRight) // Left turn reverse
+            else if (pawn.LocationX == 0 && pawn.IsReversed && !pawn.GoingRight) // Left turn reverse
             {
-                PlayerList[CurrentPlayer].Move(0, -1);
-                PlayerList[CurrentPlayer].GoingRight = true;
+                pawn.Move(0, -1);
+                pawn.GoingRight = true;
             }
-            else if (PlayerList[CurrentPlayer].LocationX == BoardWidth - 1 && PlayerList[CurrentPlayer].GoingRight) // Right turn
+            else if (pawn.LocationX == BoardWidth - 1 && pawn.GoingRight) // Right turn
             {
-                PlayerList[CurrentPlayer].Move(0, 1);
-                PlayerList[CurrentPlayer].GoingRight = false;
+                pawn.Move(0, 1);
+                pawn.GoingRight = false;
             }
-            else switch (PlayerList[CurrentPlayer].LocationX)
+            else switch (pawn.LocationX)
                 {
                     //If at start
-                    case 0 when PlayerList[CurrentPlayer].LocationY == 0:
-                        PlayerList[CurrentPlayer].GoingRight = true;
-                        PlayerList[CurrentPlayer].Move(1, 0);
+                    case 0 when pawn.LocationY == 0:
+                        pawn.GoingRight = true;
+                        pawn.Move(1, 0);
                         break;
                     //Go past the end
-                    case 0 when PlayerList[CurrentPlayer].LocationY == BoardHeight - 1:
-                        PlayerList[CurrentPlayer].Move(1, 0);
-                        PlayerList[CurrentPlayer].GoingRight = true;
-                        PlayerList[CurrentPlayer].IsReversed = true;
+                    case 0 when pawn.LocationY == BoardHeight - 1:
+                        pawn.Move(1, 0);
+                        pawn.GoingRight = true;
+                        pawn.IsReversed = true;
                         break;
                     // Left boardside turn
-                    case 0 when !PlayerList[CurrentPlayer].GoingRight:
-                        PlayerList[CurrentPlayer].Move(0, 1);
-                        PlayerList[CurrentPlayer].GoingRight = true;
+                    case 0 when !pawn.GoingRight:
+                        pawn.Move(0, 1);
+                        pawn.GoingRight = true;
                         break;
 
                     default:
                         {
-                            if (PlayerList[CurrentPlayer].GoingRight) // Move right
+                            if (pawn.GoingRight) // Move right
                             {
-                                PlayerList[CurrentPlayer].Move(1, 0);
+                                pawn.Move(1, 0);
                             }
                             else // Move left
                             {
-                                PlayerList[CurrentPlayer].Move(-1, 0);
+                                pawn.Move(-1, 0);
                             }
 
                             break;
@@ -319,9 +324,9 @@ namespace _GameOfSquirrels
                 }
         }
 
-        public void CheckPlayerDirection()
+        public void CheckPlayerDirection(IPawn pawn)
         {
-            PlayerList[CurrentPlayer].GoingRight = PlayerList[CurrentPlayer].LocationY % 2 == 0;
+            pawn.GoingRight = pawn.LocationY % 2 == 0;
         }
 
         private void EndGame()

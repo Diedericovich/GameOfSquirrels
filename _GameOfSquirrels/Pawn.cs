@@ -1,4 +1,5 @@
-﻿using System.Windows.Shapes;
+﻿using System.ComponentModel;
+using System.Windows.Shapes;
 
 namespace _GameOfSquirrels
 {
@@ -26,6 +27,7 @@ namespace _GameOfSquirrels
                 {
                     _locationX = 0;
                 }
+                OnPropertyChanged("LocationX");
             }
         }
 
@@ -45,10 +47,12 @@ namespace _GameOfSquirrels
                 {
                     _locationY = 0;
                 }
+                OnPropertyChanged("LocationY");
             }
         }
-
-        public Ellipse Ellipse { get; set; }
+        public string Image { get; set; }
+        public double Size { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public Pawn(int locationX, int locationY)
         {
@@ -58,12 +62,19 @@ namespace _GameOfSquirrels
             TurnsToSkip = 0;
             LocationX = locationX;
             LocationY = locationY;
+            Size = 55;
+            Image = "https://i.ibb.co/YtMBPrm/squirrelblue.png";
         }
 
         public void Move(int x, int y)
         {
             LocationX += x;
             LocationY += y;
+        }
+
+        protected void OnPropertyChanged(string name = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
 }

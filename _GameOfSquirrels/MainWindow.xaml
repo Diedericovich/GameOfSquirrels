@@ -6,7 +6,8 @@
         Title="MainWindow"
         Width="1200"
         Height="900"
-        mc:Ignorable="d">
+        mc:Ignorable="d"
+        Background="#FFF0AF6B">
     <Grid x:Name="GridOuter">
         <!--#region Grid Columns & Rows-->
         <Grid.ColumnDefinitions>
@@ -24,36 +25,90 @@
             <RowDefinition Height="15*" />
         </Grid.RowDefinitions>
         <!--#endregion-->
-        <!--<ScrollViewer Grid.Row="1"
-                      Grid.RowSpan="3"
-                      Grid.Column="1"
-                      HorizontalScrollBarVisibility="Auto">-->
         <Grid x:Name="GridGame"
               Grid.Row="1"
               Grid.RowSpan="3"
-              Grid.Column="1" />
+              Grid.Column="1">
+        </Grid>
         <Canvas x:Name="Overlay"
                 Grid.Row="1"
                 Grid.RowSpan="3"
-                Grid.Column="1" />
-        <!--</ScrollViewer>-->
-        <Button Grid.Row="3"
-                Grid.Column="3"
-                Click="TestButtonClick" />
-        <Label x:Name="lblDiceResult"
-               Grid.Row="1"
-               Grid.Column="3"
-               HorizontalAlignment="Left"
-               Content="{Binding LastNumberRolled, StringFormat='Number rolled: {0}'}" />
-        <Label x:Name="lblCurrentRound"
-               Grid.Row="0"
-               Grid.Column="1"
-               HorizontalAlignment="Center"
-               Content="{Binding RoundCounter, StringFormat='Current round: {0}'}" />
-        <Label x:Name="lblCurrentPlayer"
-               Grid.Row="1"
-               Grid.Column="3"
-               HorizontalAlignment="Right"
-               Content="{Binding CurrentPlayer, StringFormat='Current player: {0}'}" />
+                Grid.Column="1">
+            <Canvas.Background>
+                <ImageBrush ImageSource="/150890470_564279167877961_2533995434875167959_n.png" />
+            </Canvas.Background>
+        </Canvas>
+        <Grid Grid.Row="1"
+              Grid.Column="3"
+              Grid.RowSpan="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.4*" />
+                <RowDefinition Height="0.03*" />
+                <RowDefinition Height="0.4*" />
+                <RowDefinition Height="0.03*" />
+                <RowDefinition Height="0.4*" />
+                <RowDefinition Height="0.08*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="0.4*" />
+            </Grid.RowDefinitions>
+            <Border Grid.Row="4">
+                <Border.Background>
+                    <ImageBrush ImageSource="/stardewborderdark.png"
+                                Stretch="Fill" />
+                </Border.Background>
+                <TextBlock x:Name="lblDiceResult"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           TextWrapping="Wrap"
+                           FontSize="20"
+                           Text="{Binding LastNumberRolled, StringFormat='Number rolled: {0}', FallbackValue='Number rolled: '}" />
+            </Border>
+
+            <Border Grid.Row="2">
+                <Border.Background>
+                    <ImageBrush ImageSource="/stardewborderdark.png"
+                                Stretch="Fill" />
+                </Border.Background>
+                <TextBlock x:Name="lblCurrentPlayer"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           TextWrapping="Wrap"
+                           FontSize="20"
+                           Text="{Binding CurrentPlayer, StringFormat='Current player: {0}', FallbackValue='Current player: '}" />
+            </Border>
+            <Border Grid.Row="0">
+                <Border.Background>
+                    <ImageBrush ImageSource="/stardewborderdark.png"
+                                Stretch="Fill" />
+                </Border.Background>
+                <TextBlock x:Name="lblCurrentRound"
+                           FontSize="20"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           TextWrapping="Wrap"
+                           Text="{Binding RoundCounter, StringFormat='Current round: {0}', FallbackValue='Current round: '}"></TextBlock>
+            </Border>
+            <ListView x:Name="lvPlayers"
+                      Grid.Row="6"
+                      HorizontalAlignment="Center"
+                      BorderThickness="0"
+                      ItemTemplate="{StaticResource TempDataTemplate}"
+                      Background="Transparent">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"></StackPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>
+            <Button Grid.Row="7"
+                    MaxWidth="300"
+                    MaxHeight="100"
+                    Click="TestButtonClick"
+                    BorderBrush="#00707070">
+                <Button.Background>
+                    <ImageBrush ImageSource="/stardewborderroll.png" />
+                </Button.Background>
+            </Button>
+        </Grid>
     </Grid>
 </Window>
